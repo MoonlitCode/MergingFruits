@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgdyrtsjplyrx"]
+
+[ext_resource type="Script" path="res://Scripts/Game.cs" id="1_sf7bp"]
+[ext_resource type="PackedScene" uid="uid://bqsvam25ij123" path="res://Nodes/Fruit_0.tscn" id="2_1lsbn"]
+[ext_resource type="Resource" uid="uid://uq0ypusn5nik" path="res://Resources/FruitList.tres" id="2_bhf5w"]
+[ext_resource type="PackedScene" uid="uid://cd18rqwafv048" path="res://Nodes/Fruit_1.tscn" id="3_joc4y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qylhi"]
+size = Vector2(1920, 15)
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("_fruitBasket")]
+process_mode = 3
+script = ExtResource("1_sf7bp")
+_packedFruitList = ExtResource("2_bhf5w")
+_fruitBasket = NodePath("FruitBasket")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="FruitBasket" type="Node" parent="."]
+
+[node name="Fruit_0_Cherry" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(125, -2)
+
+[node name="Fruit_0_Cherry2" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(266, 62)
+
+[node name="Fruit_0_Cherry3" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(243, -35)
+
+[node name="Fruit_1_Strawberry" parent="FruitBasket" instance=ExtResource("3_joc4y")]
+
+[node name="Fruit_1_Strawberry2" parent="FruitBasket" instance=ExtResource("3_joc4y")]
+position = Vector2(72, -433)
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 533)
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+shape = SubResource("RectangleShape2D_qylhi")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
+position = Vector2(960, 0)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_qylhi")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
+position = Vector2(-962, -4)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_qylhi")

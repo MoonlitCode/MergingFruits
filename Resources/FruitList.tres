@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PackedFruitList" load_steps=4 format=3 uid="uid://uq0ypusn5nik"]
+
+[ext_resource type="PackedScene" uid="uid://bqsvam25ij123" path="res://Nodes/Fruit_0.tscn" id="1_5c2d7"]
+[ext_resource type="Script" path="res://Scripts/PackedFruitList.cs" id="1_f4eme"]
+[ext_resource type="PackedScene" uid="uid://cd18rqwafv048" path="res://Nodes/Fruit_1.tscn" id="2_4dv15"]
+
+[resource]
+script = ExtResource("1_f4eme")
+_data = Array[PackedScene]([ExtResource("1_5c2d7"), ExtResource("2_4dv15")])
