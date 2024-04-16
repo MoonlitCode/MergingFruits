@@ -16,30 +16,26 @@ public static class FruitMerger {
         if (CheckIfNewPairExisted(fruitPair)) return;
         _lastPair = fruitPair;
         var midPosition = (fruitPair.Fruit1.GlobalPosition + fruitPair.Fruit2.GlobalPosition) / 2;
-        // GD.Print($"Deleted 'FruitPair' | P1:{fruitPair.Fruit1.GlobalPosition} | P2:{fruitPair.Fruit2.GlobalPosition} | NewP:{midPosition}");
-
         if (_packedFruitList is null) {
             GD.Load("FruitMerger.cs: FruitList is Missing");
             return;
         }
         var nextFruit = fruitPair.Fruit1.FruitTier + 1;
-        fruitPair.Fruit1.GetParent().QueueFree();
-        fruitPair.Fruit2.GetParent().QueueFree();
+        fruitPair.Fruit1Root.QueueFree();
+        fruitPair.Fruit2Root.QueueFree();
         if (nextFruit >= _packedFruitList.Data.Count) return;
         InstantiateFruit(_fruitBasket, _packedFruitList.Data[nextFruit], midPosition);
     }
 
     private static void InstantiateFruit(Node fruitBasket, PackedScene fruit, Vector2 position) {
         if (fruit is null) return;
-        GD.Print("Instantiate()");
-        //todo Instantiate specified Fruit
         var fruitNode = GD.Load<PackedScene>(fruit.ResourcePath);
         var fruitInstance = fruitNode.InstantiateOrNull<RigidBody2D>();
         if (fruitInstance is null) return;
-        fruitBasket.AddChild(fruitInstance);
+        fruitInstance.ProcessMode = Node.ProcessModeEnum.Disabled;
         fruitInstance.GlobalPosition = position;
-        
-        GD.Print($"Parent :) :{fruitInstance.GetParent()}");
+        fruitBasket.AddChild(fruitInstance);
+        fruitInstance.ProcessMode = Node.ProcessModeEnum.Always;
     }
 
     private static bool CheckIfNewPairExisted(FruitPair comparePair) {

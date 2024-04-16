@@ -17,6 +17,7 @@ _fruitBasket = NodePath("FruitBasket")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="FruitBasket" type="Node" parent="."]
+process_mode = 4
 
 [node name="Fruit_0_Cherry" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
 position = Vector2(125, -2)
@@ -27,10 +28,175 @@ position = Vector2(266, 62)
 [node name="Fruit_0_Cherry3" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
 position = Vector2(243, -35)
 
+[node name="Fruit_0_Cherry4" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(212, -130)
+
+[node name="Fruit_0_Cherry5" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(353, -66)
+
+[node name="Fruit_0_Cherry6" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(330, -163)
+
+[node name="Fruit_0_Cherry7" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(318, -277)
+
+[node name="Fruit_0_Cherry8" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(459, -213)
+
+[node name="Fruit_0_Cherry9" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(436, -310)
+
+[node name="Fruit_0_Cherry10" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(477, -98)
+
+[node name="Fruit_0_Cherry11" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(618, -34)
+
+[node name="Fruit_0_Cherry12" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(595, -131)
+
+[node name="Fruit_0_Cherry13" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(202, 309)
+
+[node name="Fruit_0_Cherry14" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(343, 373)
+
+[node name="Fruit_0_Cherry15" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(320, 276)
+
+[node name="Fruit_0_Cherry16" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(289, 181)
+
+[node name="Fruit_0_Cherry17" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(430, 245)
+
+[node name="Fruit_0_Cherry18" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(407, 148)
+
+[node name="Fruit_0_Cherry19" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(395, 34)
+
+[node name="Fruit_0_Cherry20" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(536, 98)
+
+[node name="Fruit_0_Cherry21" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(513, 1)
+
+[node name="Fruit_0_Cherry22" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(554, 213)
+
+[node name="Fruit_0_Cherry23" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(695, 277)
+
+[node name="Fruit_0_Cherry24" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(672, 180)
+
+[node name="Fruit_0_Cherry25" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(325, -11)
+
+[node name="Fruit_0_Cherry26" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(466, 53)
+
+[node name="Fruit_0_Cherry27" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(443, -44)
+
+[node name="Fruit_0_Cherry28" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(412, -139)
+
+[node name="Fruit_0_Cherry29" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(553, -75)
+
+[node name="Fruit_0_Cherry30" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(530, -172)
+
+[node name="Fruit_0_Cherry31" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(518, -286)
+
+[node name="Fruit_0_Cherry32" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(659, -222)
+
+[node name="Fruit_0_Cherry33" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(636, -319)
+
+[node name="Fruit_0_Cherry34" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(677, -107)
+
+[node name="Fruit_0_Cherry35" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(818, -43)
+
+[node name="Fruit_0_Cherry36" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(795, -140)
+
+[node name="Fruit_0_Cherry37" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(402, 300)
+
+[node name="Fruit_0_Cherry38" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(543, 364)
+
+[node name="Fruit_0_Cherry39" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(520, 267)
+
+[node name="Fruit_0_Cherry40" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(489, 172)
+
+[node name="Fruit_0_Cherry41" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(630, 236)
+
+[node name="Fruit_0_Cherry42" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(607, 139)
+
+[node name="Fruit_0_Cherry43" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(595, 25)
+
+[node name="Fruit_0_Cherry44" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(736, 89)
+
+[node name="Fruit_0_Cherry45" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(713, -8)
+
+[node name="Fruit_0_Cherry46" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(754, 204)
+
+[node name="Fruit_0_Cherry47" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(895, 268)
+
+[node name="Fruit_0_Cherry48" parent="FruitBasket" instance=ExtResource("2_1lsbn")]
+position = Vector2(872, 171)
+
 [node name="Fruit_1_Strawberry" parent="FruitBasket" instance=ExtResource("3_joc4y")]
 
 [node name="Fruit_1_Strawberry2" parent="FruitBasket" instance=ExtResource("3_joc4y")]
-position = Vector2(72, -433)
+position = Vector2(-139, -171)
+
+[node name="Fruit_1_Strawberry3" parent="FruitBasket" instance=ExtResource("3_joc4y")]
+position = Vector2(28, -215)
+
+[node name="Fruit_1_Strawberry4" parent="FruitBasket" instance=ExtResource("3_joc4y")]
+position = Vector2(-111, -386)
+
+[node name="Fruit_1_Strawberry5" parent="FruitBasket" instance=ExtResource("3_joc4y")]
+position = Vector2(-217, -77)
+
+[node name="Fruit_1_Strawberry6" parent="FruitBasket" instance=ExtResource("3_joc4y")]
+position = Vector2(-356, -248)
+
+[node name="Fruit_1_Strawberry7" parent="FruitBasket" instance=ExtResource("3_joc4y")]
+position = Vector2(-259, 281)
+
+[node name="Fruit_1_Strawberry8" parent="FruitBasket" instance=ExtResource("3_joc4y")]
+position = Vector2(-398, 110)
+
+[node name="Fruit_1_Strawberry9" parent="FruitBasket" instance=ExtResource("3_joc4y")]
+position = Vector2(-231, 66)
+
+[node name="Fruit_1_Strawberry10" parent="FruitBasket" instance=ExtResource("3_joc4y")]
+position = Vector2(-370, -105)
+
+[node name="Fruit_1_Strawberry11" parent="FruitBasket" instance=ExtResource("3_joc4y")]
+position = Vector2(-476, 204)
+
+[node name="Fruit_1_Strawberry12" parent="FruitBasket" instance=ExtResource("3_joc4y")]
+position = Vector2(-615, 33)
 
 [node name="Walls" type="Node" parent="."]
 

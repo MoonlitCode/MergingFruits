@@ -7,6 +7,7 @@
 radius = 51.0
 
 [node name="Fruit_1_Strawberry" type="RigidBody2D"]
+process_mode = 3
 max_contacts_reported = 6
 contact_monitor = true
 
