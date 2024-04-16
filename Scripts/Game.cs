@@ -9,10 +9,13 @@ public partial class Game : Node {
     public override void _Ready() {
         base._Ready();
         FruitMerger.InitFruitMerger(_fruitBasket, _packedFruitList);
-        Fruit.OnFruitCollision += Fruit_OnFruitCollision;
+        Fruit.OnSameFruitTierCollision += Fruit_OnSameFruitTierCollision;
     }
 
-    private void Fruit_OnFruitCollision(object sender, FruitPair e) {
+    private void Fruit_OnSameFruitTierCollision(object sender, FruitPair e) {
+        if (e.Fruit1.IsAttemptingMerge || e.Fruit2.IsAttemptingMerge) return;
+        e.Fruit1.IsAttemptingMerge = true;
+        e.Fruit2.IsAttemptingMerge = true;
         FruitMerger.ProcessMerge(e);
     }
 }

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx5ul5avhy6pm"]
+
+[ext_resource type="Script" path="res://Scripts/Fruit.cs" id="1_a4etj"]
+[ext_resource type="Texture2D" uid="uid://b2c37f7cu57t5" path="res://Sprites/Ball_1k.png" id="2_ybm2o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xohb8"]
+radius = 28.0
+
+[node name="Fruit_1_Strawberry" type="RigidBody2D"]
+process_mode = 3
+max_contacts_reported = 6
+contact_monitor = true
+
+[node name="Fruit" type="Node2D" parent="."]
+script = ExtResource("1_a4etj")
+_fruitTier = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.952941, 0.368627, 0.321569, 1)
+scale = Vector2(0.055, 0.055)
+texture = ExtResource("2_ybm2o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_xohb8")

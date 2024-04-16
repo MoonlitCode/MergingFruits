@@ -42,7 +42,6 @@ public static class FruitMerger {
         if (_lastPair.Fruit1 is null || _lastPair.Fruit2 is null) return false;
         if (_lastPair == comparePair) return true;
         if (_lastPair.Fruit1 == comparePair.Fruit2 && _lastPair.Fruit2 == comparePair.Fruit1) return true;
-        GD.Print("Pair Already Processed.");
         return false;
     }
 }

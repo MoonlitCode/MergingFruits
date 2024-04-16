@@ -5,12 +5,13 @@ namespace MergingFruits.Scripts;
 
 [GlobalClass]
 public partial class Fruit : Node2D {
-	public static event EventHandler<FruitPair> OnFruitCollision;
+	public static event EventHandler<FruitPair> OnSameFruitTierCollision;
 
 	[Export] private int _fruitTier;
 	private RigidBody2D _parentRigidBody2D;
-	
+
 	public int FruitTier => _fruitTier;
+	public bool IsAttemptingMerge;
 
 	public override void _Ready() {
 		base._Ready();
@@ -24,13 +25,14 @@ public partial class Fruit : Node2D {
 	}
 
 	private void OnBodyEntered(Node body) {
+		if (IsAttemptingMerge) return;
 		if (body.GetNodeOrNull($"{Name}") is not Fruit collidedFruit) return;
 		if (collidedFruit.FruitTier != _fruitTier) return;
+		
 		var fruitPair = new FruitPair() {
 			Fruit1 = this,
 			Fruit2 = collidedFruit
 		};
-		OnFruitCollision?.Invoke(this, fruitPair);
-		//todo Fire event with both fruits. Somehow fuse only once getting both Vector2.Positions, and get the in between, spawn one tier higher
+		OnSameFruitTierCollision?.Invoke(this, fruitPair);
 	}
 }
