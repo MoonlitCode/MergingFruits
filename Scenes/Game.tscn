@@ -1,16 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgdyrtsjplyrx"]
+[gd_scene load_steps=14 format=3 uid="uid://dgdyrtsjplyrx"]
 
 [ext_resource type="Script" path="res://Scripts/Game.cs" id="1_sf7bp"]
 [ext_resource type="Resource" uid="uid://uq0ypusn5nik" path="res://Resources/FruitList.tres" id="2_bhf5w"]
 [ext_resource type="PackedScene" uid="uid://djdi670kkv4kg" path="res://Nodes/Fruit_10_Watermlon.tscn" id="3_1nvy6"]
 [ext_resource type="Script" path="res://Scripts/UIUX/GameUI.cs" id="3_2sjk2"]
 [ext_resource type="Texture2D" uid="uid://bbvwu7u0rr7sr" path="res://Sprites/Reference2.bmp" id="3_ngf3e"]
+[ext_resource type="Texture2D" uid="uid://cp8iwty0s3q6r" path="res://Sprites/Bubble.png" id="5_rd4h7"]
+[ext_resource type="Theme" uid="uid://dqh76p7sjqd07" path="res://Themes/Theme_GameUI.theme" id="6_h7smc"]
+[ext_resource type="FontFile" uid="uid://g64isy4kuurc" path="res://Fonts/Roboto-Bold.ttf" id="7_1j7de"]
+[ext_resource type="Texture2D" uid="uid://b2c37f7cu57t5" path="res://Sprites/Ball_1k.png" id="8_atv6o"]
+[ext_resource type="Texture2D" uid="uid://dx7vwd5j10ngg" path="res://icon.svg" id="10_fmj3l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qylhi"]
 size = Vector2(1920, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xft2l"]
 size = Vector2(670, 146)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7tfv0"]
+size = Vector2(450, 1920)
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_fruitBasket")]
 process_mode = 3
@@ -36,11 +44,143 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.780392, 0.556863, 0.329412, 1)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Reference2" type="Sprite2D" parent="."]
+[node name="Reference2" type="Sprite2D" parent="GameUI"]
+visible = false
+position = Vector2(960, 540)
 scale = Vector2(1.51737, 1.51737)
 texture = ExtResource("3_ngf3e")
+
+[node name="ScoreUI" type="Control" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 150.0
+offset_top = 64.0
+offset_right = 496.0
+offset_bottom = 429.0
+
+[node name="Bubble" type="TextureRect" parent="GameUI/ScoreUI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -349.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_rd4h7")
+expand_mode = 3
+
+[node name="UIText" type="RichTextLabel" parent="GameUI/ScoreUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 76.0
+grow_horizontal = 2
+mouse_filter = 2
+theme = ExtResource("6_h7smc")
+theme_override_fonts/bold_font = ExtResource("7_1j7de")
+bbcode_enabled = true
+text = "[center]Score"
+fit_content = true
+tab_size = 0
+
+[node name="FruitUpcomingUI" type="Control" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -496.0
+offset_top = 64.0
+offset_right = -150.0
+offset_bottom = 429.0
+grow_horizontal = 0
+
+[node name="Bubble" type="TextureRect" parent="GameUI/FruitUpcomingUI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -349.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_rd4h7")
+expand_mode = 3
+
+[node name="FruitUpcomingImage" type="TextureRect" parent="GameUI/FruitUpcomingUI/Bubble"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_atv6o")
+expand_mode = 3
+
+[node name="UIText" type="RichTextLabel" parent="GameUI/FruitUpcomingUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 76.0
+grow_horizontal = 2
+mouse_filter = 2
+theme = ExtResource("6_h7smc")
+theme_override_fonts/bold_font = ExtResource("7_1j7de")
+bbcode_enabled = true
+text = "[center]Upcoming"
+fit_content = true
+tab_size = 0
+
+[node name="FruitMergesUI" type="Control" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -515.0
+offset_top = -546.0
+offset_right = -129.0
+offset_bottom = -141.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Bubble" type="TextureRect" parent="GameUI/FruitMergesUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -193.0
+offset_top = -386.0
+offset_right = 193.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_rd4h7")
+expand_mode = 3
+
+[node name="UIText" type="RichTextLabel" parent="GameUI/FruitMergesUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 76.0
+grow_horizontal = 2
+mouse_filter = 2
+theme = ExtResource("6_h7smc")
+theme_override_fonts/bold_font = ExtResource("7_1j7de")
+bbcode_enabled = true
+text = "[center]Merge Order"
+fit_content = true
+tab_size = 0
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="FruitBasket" type="Node" parent="."]
 process_mode = 4
@@ -75,3 +215,19 @@ position = Vector2(0, -340)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_OutOfBounds"]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_xft2l")
+debug_color = Color(0.701961, 0, 0, 0.419608)
+
+[node name="Area2D_FruitDropper" type="Area2D" parent="."]
+
+[node name="Sprite2D_Dropper" type="Sprite2D" parent="Area2D_FruitDropper"]
+z_index = 10
+texture = ExtResource("10_fmj3l")
+
+[node name="Sprite2D_Fruit" type="Sprite2D" parent="Area2D_FruitDropper/Sprite2D_Dropper"]
+position = Vector2(0, 64)
+scale = Vector2(0.095, 0.095)
+texture = ExtResource("8_atv6o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_FruitDropper"]
+shape = SubResource("RectangleShape2D_7tfv0")
+debug_color = Color(0, 0.701961, 0.129412, 0.419608)

@@ -1,7 +1,7 @@
 ﻿using Godot;
 using Godot.Collections;
 
-namespace MergingFruits.Scripts;
+namespace MergingFruits.Scripts.Fruits;
 
 [GlobalClass]
 public partial class PackedFruitList : Resource {

@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace MergingFruits.Scripts;
+namespace MergingFruits.Scripts.Fruits;
 
 [GlobalClass]
 public partial class Fruit : Node2D {

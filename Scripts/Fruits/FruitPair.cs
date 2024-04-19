@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace MergingFruits.Scripts;
+namespace MergingFruits.Scripts.Fruits;
 
 public class FruitPair {
     public Fruit Fruit1;

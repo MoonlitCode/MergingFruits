@@ -1,13 +1,13 @@
 ﻿using Godot;
 
-namespace MergingFruits.Scripts;
+namespace MergingFruits.Scripts.Fruits;
 
 public static class FruitMerger {
-    private static PackedFruitList _packedFruitList;
+    private static Fruits.PackedFruitList _packedFruitList;
     private static Node _fruitBasket;
     private static FruitPair _lastPair = new();
 
-    public static void InitFruitMerger(Node fruitBasket, PackedFruitList packedFruitList) {
+    public static void InitFruitMerger(Node fruitBasket, Fruits.PackedFruitList packedFruitList) {
         _fruitBasket = fruitBasket;
         _packedFruitList = packedFruitList;
     }
