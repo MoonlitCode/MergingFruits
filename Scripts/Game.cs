@@ -1,6 +1,7 @@
 #nullable enable
 using Godot;
 using MergingFruits.Scripts.Fruits;
+using static MergingFruits.Scripts.StringInputs;
 
 namespace MergingFruits.Scripts;
 
@@ -24,7 +25,11 @@ public partial class Game : Node {
 		base._Process(delta);
 		if (!HasAllComponents()) return;
 		CalculateMouseControls();
+		CalculateButtonControls();
 	}
+
+	private Vector2 GetUserInputVector2()
+		=> Input.GetVector(DirLeft, DirRight, DirUp, DirDown);
 
 	private void CalculateMouseControls() {
 		var mousePosition = GetWindow().GetMousePosition();
@@ -32,9 +37,14 @@ public partial class Game : Node {
 		var centerOriginPosition = mousePosition - halfWindowSize ;
 		
 		_fruitDropper.TryRepositionDropper(centerOriginPosition);
-		if (Input.IsActionJustPressed(StringInputs.DropFruit)) {
+		if (Input.IsActionJustPressed(DropFruit))
 			_fruitDropper.TrySpawnWeightedFruit();
-		}
+	}
+
+	private void CalculateButtonControls() {
+		_fruitDropper.TryTranslatingDropper(GetUserInputVector2());
+		if(Input.IsActionJustPressed(DropFruit))
+			_fruitDropper.TrySpawnWeightedFruit();
 	}
 
 	private void Fruit_OnSameFruitTierCollision(object? sender, FruitPair e) {

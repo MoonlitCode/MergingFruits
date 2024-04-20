@@ -8,6 +8,7 @@ public partial class FruitDropper : Area2D {
 	[Export] private Sprite2D? _dropperSprite;
 	[Export] private TextureRect? _fruitRect;
 	[Export] private CollisionShape2D? _collisionShape2D;
+	[Export] private float _dropperSpeed = 15;
 	private FruitPackedWeightedList? _fruitPackedWeightedList;
 
 	public void Initialize(FruitPackedWeightedList fruitPackedWeightedList) {
@@ -16,7 +17,7 @@ public partial class FruitDropper : Area2D {
 
 	//todo External inputs, move dropper, method for spawning fruit, include timer.
 	/// <summary>
-	/// Attempts to immediately reposition dropper. To be used with KB+M control schemes.
+	/// Attempts to immediately reposition dropper. To be used with Mouse control schemes.
 	/// </summary>
 	/// <param name="globalPosition"></param>
 	public void TryRepositionDropper(Vector2 globalPosition) {
@@ -28,14 +29,30 @@ public partial class FruitDropper : Area2D {
 	}
 
 	/// <summary>
-	/// Attempts to translate dropper over time. To be used with Gamepad control schemes.
+	/// Attempts to translate dropper over time. To be used with Button control schemes.
 	/// </summary>
 	/// <param name="direction"></param>
 	public void TryTranslatingDropper(Vector2 direction) {
 		if (!HasAllComponents()) return;
+
+		var colliderSize = _collisionShape2D.Shape.GetRect().Size.X / 2;
+		var positionOffset = direction * _dropperSpeed;
 		
+		var newPosition = new Vector2(_dropperSprite.GlobalPosition.X + positionOffset.X, _dropperSprite.GlobalPosition.Y);
+		
+		_dropperSprite.GlobalPosition = newPosition;
+		if (newPosition.X < -colliderSize)
+			_dropperSprite.GlobalPosition = new Vector2(-colliderSize, newPosition.Y);
+		if (newPosition.X > colliderSize)
+			_dropperSprite.GlobalPosition = new Vector2(colliderSize, newPosition.Y);
 	}
 
+	/// <summary>
+	/// Spawns a specified fruit according to assigned 'FruitPackedWeightedList'.
+	/// <br/>This method will get the lowest "list index" if the given "index" is too low.
+	/// <br/>This method will get the highest "list index" if the given "index" is too high.
+	/// </summary>
+	/// <param name="index">The desired fruit index to spawn</param>
 	public void TrySpawnSpecificFruit(int index) {
 		if (!HasAllComponents()) return;
 		if (index > _fruitPackedWeightedList.Data.Count) index -= 1;
@@ -45,6 +62,12 @@ public partial class FruitDropper : Area2D {
 		FruitSpawner.RB2DInstOrNull(_targetParent, _fruitPackedWeightedList.Data[index].FruitScene, targetPosition);
 	}
 
+	/// <summary>
+	/// Utilizes 'TrySpawnSpecificFruit(int index)'
+	/// <br/>Spawns a specified fruit according to assigned 'FruitPackedWeightedList'.
+	/// <br/>This method will get the lowest "list index" if the given "index" is too low.
+	/// <br/>This method will get the highest "list index" if the given "index" is too high.
+	/// </summary>
 	public void TrySpawnWeightedFruit() {
 		if (!HasAllComponents()) return;
 		
@@ -54,7 +77,6 @@ public partial class FruitDropper : Area2D {
 			var fruitWeight = _fruitPackedWeightedList.Data[i].Weight;
 			var randomRoll = GD.Randf();
 			if (fruitWeight >= randomRoll) {
-				GD.Print($"FruitWeight:{fruitWeight} | Roll:{randomRoll}");
 				TrySpawnSpecificFruit(i);
 				break;
 			}
