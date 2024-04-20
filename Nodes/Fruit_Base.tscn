@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://blqg1py8lh7u"]
 
 [ext_resource type="Texture2D" uid="uid://b2c37f7cu57t5" path="res://Sprites/Ball_1k.png" id="1_i7b72"]
-[ext_resource type="Script" path="res://Scripts/Fruit.cs" id="1_ybho2"]
+[ext_resource type="Script" path="res://Scripts/Fruits/Fruit.cs" id="1_ybho2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2egbk"]
 radius = 256.0

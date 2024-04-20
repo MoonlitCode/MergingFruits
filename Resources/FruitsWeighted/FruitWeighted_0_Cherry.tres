@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="FruitPackedWeighted" load_steps=3 format=3 uid="uid://c5w8yt3aq1aiv"]
+
+[ext_resource type="Script" path="res://Scripts/Fruits/FruitPackedWeighted.cs" id="1_oxi1v"]
+[ext_resource type="PackedScene" uid="uid://dlcxcjcrlkyqb" path="res://Nodes/Fruit_0_Cherry.tscn" id="1_tp30x"]
+
+[resource]
+script = ExtResource("1_oxi1v")
+_packedScene = ExtResource("1_tp30x")
+_weight = 1.0

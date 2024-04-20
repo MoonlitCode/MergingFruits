@@ -3,39 +3,28 @@
 namespace MergingFruits.Scripts.Fruits;
 
 public static class FruitMerger {
-    private static Fruits.PackedFruitList _packedFruitList;
+    private static FruitPackedList _fruitPackedList;
     private static Node _fruitBasket;
     private static FruitPair _lastPair = new();
 
-    public static void InitFruitMerger(Node fruitBasket, Fruits.PackedFruitList packedFruitList) {
+    public static void InitFruitMerger(Node fruitBasket, FruitPackedList fruitPackedList) {
         _fruitBasket = fruitBasket;
-        _packedFruitList = packedFruitList;
+        _fruitPackedList = fruitPackedList;
     }
     
     public static void ProcessMerge(FruitPair fruitPair) {
         if (CheckIfNewPairExisted(fruitPair)) return;
         _lastPair = fruitPair;
         var midPosition = (fruitPair.Fruit1.GlobalPosition + fruitPair.Fruit2.GlobalPosition) / 2;
-        if (_packedFruitList is null) {
+        if (_fruitPackedList is null) {
             GD.Load("FruitMerger.cs: FruitList is Missing");
             return;
         }
         var nextFruit = fruitPair.Fruit1.FruitTier + 1;
         fruitPair.Fruit1Root.QueueFree();
         fruitPair.Fruit2Root.QueueFree();
-        if (nextFruit >= _packedFruitList.Data.Count) return;
-        InstantiateFruit(_fruitBasket, _packedFruitList.Data[nextFruit], midPosition);
-    }
-
-    private static void InstantiateFruit(Node fruitBasket, PackedScene fruit, Vector2 position) {
-        if (fruit is null) return;
-        var fruitNode = GD.Load<PackedScene>(fruit.ResourcePath);
-        var fruitInstance = fruitNode.InstantiateOrNull<RigidBody2D>();
-        if (fruitInstance is null) return;
-        fruitInstance.ProcessMode = Node.ProcessModeEnum.Disabled;
-        fruitInstance.GlobalPosition = position;
-        fruitBasket.AddChild(fruitInstance);
-        fruitInstance.ProcessMode = Node.ProcessModeEnum.Always;
+        if (nextFruit >= _fruitPackedList.Data.Count) return;
+        FruitSpawner.RB2DInstOrNull(_fruitBasket, _fruitPackedList.Data[nextFruit], midPosition);
     }
 
     private static bool CheckIfNewPairExisted(FruitPair comparePair) {
