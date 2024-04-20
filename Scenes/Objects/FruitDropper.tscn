@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4bjbf84nbipb"]
+
+[ext_resource type="Script" path="res://Scripts/Fruits/FruitDropper.cs" id="1_rvjus"]
+[ext_resource type="Texture2D" uid="uid://dx7vwd5j10ngg" path="res://icon.svg" id="2_ofac8"]
+[ext_resource type="Texture2D" uid="uid://b2c37f7cu57t5" path="res://Sprites/Ball_1k.png" id="3_vifmc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dou7i"]
+size = Vector2(450, 3840)
+
+[node name="FruitDropper" type="Area2D" node_paths=PackedStringArray("_dropperSprite", "_fruitRect", "_collisionShape2D")]
+script = ExtResource("1_rvjus")
+_dropperSprite = NodePath("Sprite2D_Dropper")
+_fruitRect = NodePath("Sprite2D_Dropper/Control/TextureRect_Fruit")
+_collisionShape2D = NodePath("CollisionShape2D")
+
+[node name="Sprite2D_Dropper" type="Sprite2D" parent="."]
+texture = ExtResource("2_ofac8")
+
+[node name="Control" type="Control" parent="Sprite2D_Dropper"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = -44.0
+offset_right = -14.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect_Fruit" type="TextureRect" parent="Sprite2D_Dropper/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_vifmc")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dou7i")
+debug_color = Color(0, 0.701961, 0.243137, 0.419608)
