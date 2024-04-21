@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_p3yo4")
 _packedScene = ExtResource("1_grb8l")
-_weight = 0.05
+_weight = 0.01

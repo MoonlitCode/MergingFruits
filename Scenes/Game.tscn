@@ -26,6 +26,7 @@ _fruitDropper = NodePath("FruitDropper")
 _fruitPackedList = ExtResource("2_vex5x")
 _fruitPackedWeightedList = ExtResource("3_d71tp")
 _fruitBasket = NodePath("FruitBasket")
+_secondsBetweenFruitSpawn = 0.8
 
 [node name="GameUI" type="Control" parent="."]
 layout_mode = 3
