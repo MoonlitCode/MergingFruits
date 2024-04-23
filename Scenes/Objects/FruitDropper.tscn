@@ -34,6 +34,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect_Fruit" type="TextureRect" parent="Sprite2D_Dropper/Control_FruitDisplay"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

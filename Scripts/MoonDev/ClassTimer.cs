@@ -5,10 +5,11 @@ namespace MergingFruits.Scripts.MoonDev;
 public class ClassTimer {
     public event EventHandler<ClassTimer> OnTimerEnded;
     
-    public float MaxTimer;
+    private float _maxTimer;
     private float _currentTimer;
     private bool _hasTimerEnded;
 
+    public float MaxTimer => _maxTimer;
     public float CurrentTimer => _currentTimer;
     public bool HasTimerEnded => _hasTimerEnded;
 
@@ -36,7 +37,7 @@ public class ClassTimer {
     /// </summary>
     /// <param name="maxTimer"></param>
     public void InitializeTimer(float maxTimer) {
-        MaxTimer = maxTimer;
+        _maxTimer = maxTimer;
     }
 
     /// <summary>

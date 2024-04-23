@@ -11,13 +11,14 @@ public partial class FruitDropper : Area2D {
 	[Export] private TextureProgressBar? _progressBar;
 	[Export] private CollisionShape2D? _collisionShape2D;
 	[Export] private float _dropperSpeed = 15;
-	private FruitPackedWeightedList? _fruitPackedWeightedList;
-	private ClassTimer _progressBarFadeTimer = new() {
-		MaxTimer = 0.2f
-	};
+	
+	private ClassTimer _progressBarFadeTimer = new();
 
-	public void Initialize(FruitPackedWeightedList fruitPackedWeightedList) {
-		_fruitPackedWeightedList = fruitPackedWeightedList;
+	public Vector2 DropPosition => _fruitRect.GlobalPosition + (_fruitRect.Size / 2);
+
+	public override void _Ready() {
+		base._Ready();
+		_progressBarFadeTimer.InitializeTimer(0.2f);
 	}
 
 	/// <summary>
@@ -49,44 +50,6 @@ public partial class FruitDropper : Area2D {
 			_dropperSprite.GlobalPosition = new Vector2(-colliderSize, newPosition.Y);
 		if (newPosition.X > colliderSize)
 			_dropperSprite.GlobalPosition = new Vector2(colliderSize, newPosition.Y);
-	}
-
-	/// <summary>
-	/// Spawns a specified fruit according to assigned 'FruitPackedWeightedList'.
-	/// <br/>This method will get the lowest "list index" if the given "index" is too low.
-	/// <br/>This method will get the highest "list index" if the given "index" is too high.
-	/// </summary>
-	/// <param name="index">The desired fruit index to spawn</param>
-	public void TrySpawnSpecificFruit(int index) {
-		if (!HasAllComponents()) return;
-		if (index > _fruitPackedWeightedList.Data.Count) index -= 1;
-		if (index < 0) index = 0;
-
-		var targetPosition = _fruitRect.GlobalPosition + (_fruitRect.Size / 2);
-		FruitSpawner.RB2DInstOrNull(_targetParent, _fruitPackedWeightedList.Data[index].FruitScene, targetPosition);
-	}
-
-	/// <summary>
-	/// Utilizes 'TrySpawnSpecificFruit(int index)'
-	/// <br/>Spawns a specified fruit according to assigned 'FruitPackedWeightedList'.
-	/// <br/>This method will get the lowest "list index" if the given "index" is too low.
-	/// <br/>This method will get the highest "list index" if the given "index" is too high.
-	/// </summary>
-	public void TrySpawnWeightedFruit() {
-		if (!HasAllComponents()) return;
-		
-		var fruitIndex = _fruitPackedWeightedList.Data.Count - 1;
-		
-		for (var i = fruitIndex; i >= 0; i--) {
-			var fruitWeight = _fruitPackedWeightedList.Data[i].Weight;
-			var randomRoll = GD.Randf();
-			if (fruitWeight >= randomRoll) {
-				TrySpawnSpecificFruit(i);
-				break;
-			}
-			//note Safety Check In-case Everything Is Rolled Past.
-			if (i <= 0) TrySpawnSpecificFruit(0);
-		}
 	}
 
 	/// <summary>

@@ -7,7 +7,7 @@ public static class FruitMerger {
     private static Node _fruitBasket;
     private static FruitPair _lastPair = new();
 
-    public static void InitFruitMerger(Node fruitBasket, FruitPackedList fruitPackedList) {
+    public static void Initialize(Node fruitBasket, FruitPackedList fruitPackedList) {
         _fruitBasket = fruitBasket;
         _fruitPackedList = fruitPackedList;
     }
@@ -24,7 +24,7 @@ public static class FruitMerger {
         fruitPair.Fruit1Root.QueueFree();
         fruitPair.Fruit2Root.QueueFree();
         if (nextFruit >= _fruitPackedList.Data.Count) return;
-        FruitSpawner.RB2DInstOrNull(_fruitBasket, _fruitPackedList.Data[nextFruit], midPosition);
+        FruitSpawner.RB2DInstantiateOrNull(_fruitBasket, _fruitPackedList.Data[nextFruit], midPosition);
     }
 
     private static bool CheckIfNewPairExisted(FruitPair comparePair) {

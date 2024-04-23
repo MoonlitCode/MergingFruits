@@ -1,11 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://dgdyrtsjplyrx"]
+[gd_scene load_steps=16 format=3 uid="uid://dgdyrtsjplyrx"]
 
-[ext_resource type="Script" path="res://Scripts/Game.cs" id="1_sf7bp"]
+[ext_resource type="Script" path="res://Scripts/Game/GameMain.cs" id="1_sf7bp"]
 [ext_resource type="Resource" uid="uid://uq0ypusn5nik" path="res://Resources/FruitPackedList.tres" id="2_vex5x"]
 [ext_resource type="PackedScene" uid="uid://djdi670kkv4kg" path="res://Nodes/Fruit_10_Watermlon.tscn" id="3_1nvy6"]
 [ext_resource type="Script" path="res://Scripts/UIUX/GameUI.cs" id="3_2sjk2"]
 [ext_resource type="Resource" uid="uid://dt472patp14fl" path="res://Resources/FruitPackedWeightedList.tres" id="3_d71tp"]
 [ext_resource type="Texture2D" uid="uid://bbvwu7u0rr7sr" path="res://Sprites/Reference2.bmp" id="3_ngf3e"]
+[ext_resource type="Script" path="res://Scripts/Game/GameControls.cs" id="4_i85eo"]
 [ext_resource type="Texture2D" uid="uid://cp8iwty0s3q6r" path="res://Sprites/Bubble.png" id="5_rd4h7"]
 [ext_resource type="Theme" uid="uid://dqh76p7sjqd07" path="res://Themes/Theme_GameUI.theme" id="6_h7smc"]
 [ext_resource type="FontFile" uid="uid://g64isy4kuurc" path="res://Fonts/Roboto-Bold.ttf" id="7_1j7de"]
@@ -13,20 +14,27 @@
 [ext_resource type="Script" path="res://Scripts/Fruits/FruitOutOfBounds.cs" id="10_2emqy"]
 [ext_resource type="PackedScene" uid="uid://c4bjbf84nbipb" path="res://Scenes/Objects/FruitDropper.tscn" id="12_d3o1i"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qylhi"]
-size = Vector2(1920, 15)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xft2l"]
 size = Vector2(670, 146)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("_fruitDropper", "_fruitBasket")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qylhi"]
+size = Vector2(1920, 15)
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("_gameControls", "_fruitDropper", "_fruitBasket")]
 process_mode = 3
 script = ExtResource("1_sf7bp")
+_gameControls = NodePath("GameComponents/GameControls")
 _fruitDropper = NodePath("FruitDropper")
 _fruitPackedList = ExtResource("2_vex5x")
 _fruitPackedWeightedList = ExtResource("3_d71tp")
 _fruitBasket = NodePath("FruitBasket")
-_secondsBetweenFruitSpawn = 0.8
+
+[node name="GameComponents" type="Node" parent="."]
+process_mode = 4
+
+[node name="GameControls" type="Node" parent="GameComponents"]
+process_mode = 3
+script = ExtResource("4_i85eo")
 
 [node name="GameUI" type="Control" parent="."]
 layout_mode = 3
@@ -184,6 +192,20 @@ tab_size = 0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="FruitOutOfBounds" type="Area2D" parent="."]
+position = Vector2(0, -340)
+input_pickable = false
+script = ExtResource("10_2emqy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FruitOutOfBounds"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_xft2l")
+debug_color = Color(0.701961, 0, 0, 0.419608)
+
+[node name="FruitDropper" parent="." node_paths=PackedStringArray("_targetParent") instance=ExtResource("12_d3o1i")]
+position = Vector2(0, -410)
+_targetParent = NodePath("../FruitBasket")
+
 [node name="FruitBasket" type="Node" parent="."]
 process_mode = 4
 
@@ -211,18 +233,3 @@ rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
 shape = SubResource("RectangleShape2D_qylhi")
-
-[node name="FruitOutOfBounds" type="Area2D" parent="."]
-position = Vector2(0, -340)
-input_pickable = false
-script = ExtResource("10_2emqy")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FruitOutOfBounds"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_xft2l")
-debug_color = Color(0.701961, 0, 0, 0.419608)
-
-[node name="FruitDropper" parent="." node_paths=PackedStringArray("_targetParent") instance=ExtResource("12_d3o1i")]
-z_index = 10
-position = Vector2(0, -410)
-_targetParent = NodePath("../FruitBasket")
