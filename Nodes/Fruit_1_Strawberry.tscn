@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx5ul5avhy6pm"]
+[gd_scene load_steps=5 format=3 uid="uid://dx5ul5avhy6pm"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://b7lcsnbxer3hl" path="res://Physics/Material/Fruit.tres" id="1_3cj7q"]
 [ext_resource type="Script" path="res://Scripts/Fruits/Fruit.cs" id="1_a4etj"]
 [ext_resource type="Texture2D" uid="uid://b2c37f7cu57t5" path="res://Sprites/Ball_1k.png" id="2_ybm2o"]
 
@@ -8,12 +9,13 @@ radius = 28.0
 
 [node name="Fruit_1_Strawberry" type="RigidBody2D"]
 process_mode = 3
+mass = 0.6
+physics_material_override = ExtResource("1_3cj7q")
 max_contacts_reported = 6
 contact_monitor = true
 
 [node name="Fruit" type="Node2D" parent="."]
 script = ExtResource("1_a4etj")
-_fruitSpawnWeight = 0.4
 _fruitTier = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

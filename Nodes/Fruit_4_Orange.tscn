@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://oo8wf2c26aar"]
+[gd_scene load_steps=5 format=3 uid="uid://oo8wf2c26aar"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://b7lcsnbxer3hl" path="res://Physics/Material/Fruit.tres" id="1_1idhv"]
 [ext_resource type="Script" path="res://Scripts/Fruits/Fruit.cs" id="1_iwyox"]
 [ext_resource type="Texture2D" uid="uid://b2c37f7cu57t5" path="res://Sprites/Ball_1k.png" id="2_vhp4m"]
 
@@ -8,6 +9,8 @@ radius = 62.0
 
 [node name="Fruit_4_Orange" type="RigidBody2D"]
 process_mode = 3
+mass = 2.0
+physics_material_override = ExtResource("1_1idhv")
 max_contacts_reported = 6
 contact_monitor = true
 

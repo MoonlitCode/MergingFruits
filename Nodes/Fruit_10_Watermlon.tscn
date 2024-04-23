@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://djdi670kkv4kg"]
+[gd_scene load_steps=5 format=3 uid="uid://djdi670kkv4kg"]
 
 [ext_resource type="Script" path="res://Scripts/Fruits/Fruit.cs" id="1_7183a"]
+[ext_resource type="PhysicsMaterial" uid="uid://b7lcsnbxer3hl" path="res://Physics/Material/Fruit.tres" id="1_jldfm"]
 [ext_resource type="Texture2D" uid="uid://b2c37f7cu57t5" path="res://Sprites/Ball_1k.png" id="2_onl34"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tyv8h"]
@@ -8,6 +9,8 @@ radius = 185.0
 
 [node name="Fruit_10_Watermlon" type="RigidBody2D"]
 process_mode = 3
+mass = 8.0
+physics_material_override = ExtResource("1_jldfm")
 max_contacts_reported = 6
 contact_monitor = true
 
