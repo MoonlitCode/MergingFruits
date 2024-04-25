@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="FruitInfoList" load_steps=3 format=3 uid="uid://uq0ypusn5nik"]
+
+[ext_resource type="Resource" uid="uid://bclyp5vyh3u0e" path="res://Resources/FruitInfos/FO_0_Cherry.tres" id="1_axer1"]
+[ext_resource type="Script" path="res://Scripts/Fruits/FruitInfoList.cs" id="1_qqikn"]
+
+[resource]
+script = ExtResource("1_qqikn")
+_data = Array[Object]([ExtResource("1_axer1")])

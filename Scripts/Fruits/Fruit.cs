@@ -7,7 +7,7 @@ namespace MergingFruits.Scripts.Fruits;
 [GlobalClass]
 public partial class Fruit : Node2D {
 	public static event EventHandler<FruitPair>? OnSameFruitTierCollision;
-	public const string Class = "Fruit";
+	public const string ClassName = "Fruit";
 
 	[Export] private int _fruitTier;
 	private RigidBody2D? _parentRigidBody2D;
@@ -30,7 +30,7 @@ public partial class Fruit : Node2D {
 	private void OnBodyEntered(Node body) {
 		if (!HasAllComponents()) return;
 		if (IsAttemptingMerge) return;
-		if (body.GetNodeOrNull($"{Name}") is not Fruit collidedFruit) return;
+		if (body.GetNodeOrNull($"{ClassName}") is not Fruit collidedFruit) return;
 		if (collidedFruit.FruitTier != _fruitTier) return;
 		
 		var fruitPair = new FruitPair() {

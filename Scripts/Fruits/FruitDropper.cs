@@ -7,14 +7,14 @@ namespace MergingFruits.Scripts.Fruits;
 public partial class FruitDropper : Area2D {
 	[Export] private Node? _targetParent;
 	[Export] private Sprite2D? _dropperSprite;
-	[Export] private TextureRect? _fruitRect;
+	[Export] private Node2D? _dropPosition;
 	[Export] private TextureProgressBar? _progressBar;
 	[Export] private CollisionShape2D? _collisionShape2D;
 	[Export] private float _dropperSpeed = 15;
 	
 	private ClassTimer _progressBarFadeTimer = new();
 
-	public Vector2 DropPosition => _fruitRect.GlobalPosition + (_fruitRect.Size / 2);
+	public Vector2 DropGlobalPosition => _dropPosition?.GlobalPosition ?? Vector2.Zero;
 
 	public override void _Ready() {
 		base._Ready();
@@ -92,8 +92,8 @@ public partial class FruitDropper : Area2D {
 			GD.PrintErr($"FruitDropper.cs is Missing: _targetParent");
 			return false;
 		}
-		if (_fruitRect is null) {
-			GD.PrintErr($"FruitDropper.cs is Missing: _fruitRect");
+		if (_dropPosition is null) {
+			GD.PrintErr($"FruitDropper.cs is Missing: _dropPosition");
 			return false;
 		}
 		if (_progressBar is null) {

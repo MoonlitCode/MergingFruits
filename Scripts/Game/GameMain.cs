@@ -10,9 +10,8 @@ public partial class GameMain : Node {
 	[Export] private GameControls? _gameControls;
 	
 	[Export] private FruitDropper? _fruitDropper;
-	[Export] private FruitPackedList? _fruitPackedList;
-	[Export] private FruitPackedWeightedList? _fruitPackedWeightedList;
-	[Export] private Node? _fruitBasket;
+	[Export] private FruitInfoList? _fruitPackedList;
+	[Export] private Node2D? _fruitBasket;
 	[Export] private float _secondsBetweenFruitSpawn = 1f;
 
 	private PackedScene _currentFruit;
@@ -27,7 +26,7 @@ public partial class GameMain : Node {
 		_gameControls.OnActionDropFruit += GameControls_OnActionDropFruit;
 		Fruit.OnSameFruitTierCollision += Fruit_OnSameFruitTierCollision;
 		FruitSpawner.OnFruitSpawned += FruitSpawner_OnFruitSpawned;
-		FruitPicker.Initialize(_fruitPackedWeightedList);
+		FruitPicker.Initialize(_fruitPackedList);
 		FruitMerger.Initialize(_fruitBasket, _fruitPackedList);
 
 		_dropTimer.InitializeTimer(_secondsBetweenFruitSpawn);
@@ -47,7 +46,7 @@ public partial class GameMain : Node {
 	}
 
 	private void GameControls_OnActionDropFruit(object? sender, EventArgs e) {
-		FruitSpawner.RB2DInstantiateOrNull(_fruitBasket, _currentFruit,_fruitDropper.DropPosition);
+		FruitSpawner.RB2DInstantiateOrNull(_fruitDropper, _currentFruit, _fruitDropper.DropGlobalPosition);
 	}
 	
 	private void Fruit_OnSameFruitTierCollision(object? sender, FruitPair e) {

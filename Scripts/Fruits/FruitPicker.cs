@@ -4,9 +4,9 @@ using Godot;
 namespace MergingFruits.Scripts.Fruits;
 
 public static class FruitPicker {
-    private static FruitPackedWeightedList? _fruitPackedWeightedList;
+    private static FruitInfoList? _fruitPackedWeightedList;
 
-    public static void Initialize(FruitPackedWeightedList fruitPackedWeightedList) {
+    public static void Initialize(FruitInfoList fruitPackedWeightedList) {
         _fruitPackedWeightedList = fruitPackedWeightedList;
     }
     
@@ -20,7 +20,7 @@ public static class FruitPicker {
         if (!HasAllComponents()) return null;
         if (index > _fruitPackedWeightedList.Data.Count) index -= 1;
         if (index < 0) index = 0;
-        return _fruitPackedWeightedList.Data[index].FruitScene;
+        return _fruitPackedWeightedList.Data[index].PackedScene;
     }
     
     /// <summary>

@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dgdyrtsjplyrx"]
+[gd_scene load_steps=15 format=3 uid="uid://dgdyrtsjplyrx"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameMain.cs" id="1_sf7bp"]
-[ext_resource type="Resource" uid="uid://uq0ypusn5nik" path="res://Resources/FruitPackedList.tres" id="2_vex5x"]
+[ext_resource type="Resource" uid="uid://uq0ypusn5nik" path="res://Resources/FruitInfoList.tres" id="2_vex5x"]
 [ext_resource type="PackedScene" uid="uid://djdi670kkv4kg" path="res://Nodes/Fruit_10_Watermlon.tscn" id="3_1nvy6"]
 [ext_resource type="Script" path="res://Scripts/UIUX/GameUI.cs" id="3_2sjk2"]
-[ext_resource type="Resource" uid="uid://dt472patp14fl" path="res://Resources/FruitPackedWeightedList.tres" id="3_d71tp"]
 [ext_resource type="Texture2D" uid="uid://bbvwu7u0rr7sr" path="res://Sprites/Reference2.bmp" id="3_ngf3e"]
 [ext_resource type="Script" path="res://Scripts/Game/GameControls.cs" id="4_i85eo"]
 [ext_resource type="Texture2D" uid="uid://cp8iwty0s3q6r" path="res://Sprites/Bubble.png" id="5_rd4h7"]
@@ -18,7 +17,7 @@
 size = Vector2(670, 146)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qylhi"]
-size = Vector2(1920, 15)
+size = Vector2(1858.22, 15)
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_gameControls", "_fruitDropper", "_fruitBasket")]
 process_mode = 3
@@ -26,7 +25,6 @@ script = ExtResource("1_sf7bp")
 _gameControls = NodePath("GameComponents/GameControls")
 _fruitDropper = NodePath("FruitDropper")
 _fruitPackedList = ExtResource("2_vex5x")
-_fruitPackedWeightedList = ExtResource("3_d71tp")
 _fruitBasket = NodePath("FruitBasket")
 
 [node name="GameComponents" type="Node" parent="."]
@@ -193,7 +191,7 @@ tab_size = 0
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="FruitOutOfBounds" type="Area2D" parent="."]
-position = Vector2(0, -340)
+position = Vector2(673, -340)
 input_pickable = false
 script = ExtResource("10_2emqy")
 
@@ -206,7 +204,7 @@ debug_color = Color(0.701961, 0, 0, 0.419608)
 position = Vector2(0, -410)
 _targetParent = NodePath("../FruitBasket")
 
-[node name="FruitBasket" type="Node" parent="."]
+[node name="FruitBasket" type="Node2D" parent="."]
 process_mode = 4
 
 [node name="Fruit_10_Watermlon" parent="FruitBasket" instance=ExtResource("3_1nvy6")]

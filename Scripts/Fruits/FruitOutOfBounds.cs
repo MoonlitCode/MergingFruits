@@ -15,7 +15,7 @@ public partial class FruitOutOfBounds : Area2D {
     }
 
     private void OnBodyEntered(Node2D body) {
-        if (body.GetNodeOrNull(Fruit.Class) is not Fruit collidedFruit) return;
+        if (body.GetNodeOrNull(Fruit.ClassName) is not Fruit collidedFruit) return;
         GD.Print($"FruitOutOfBounds: {collidedFruit} BodyEntered");
     }
 }

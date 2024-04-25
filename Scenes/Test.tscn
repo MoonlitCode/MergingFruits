@@ -1,9 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://bjs5058n842rw"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameMain.cs" id="1_73qnv"]
-[ext_resource type="Resource" uid="uid://uq0ypusn5nik" path="res://Resources/FruitPackedList.tres" id="2_av32e"]
+[ext_resource type="Resource" uid="uid://uq0ypusn5nik" path="res://Resources/FruitInfoList.tres" id="2_av32e"]
 [ext_resource type="Script" path="res://Scripts/UIUX/GameUI.cs" id="3_cwsos"]
 [ext_resource type="Texture2D" uid="uid://bbvwu7u0rr7sr" path="res://Sprites/Reference2.bmp" id="4_kpxhj"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qylhi"]
 size = Vector2(1920, 15)
