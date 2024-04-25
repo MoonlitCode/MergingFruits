@@ -13,11 +13,13 @@ public partial class GameMain : Node {
 	[Export] private FruitInfoList? _fruitPackedList;
 	[Export] private Node2D? _fruitBasket;
 	[Export] private float _secondsBetweenFruitSpawn = 1f;
+	[Export] private float _fruitSpawnDelay = 0.5f;
 
 	private PackedScene _currentFruit;
 	private PackedScene _nextFruit;
 
 	private ClassTimer _dropTimer = new();
+	private ClassTimer _dropDelayTimer = new();
 	
 	public override void _Ready() {
 		base._Ready();
@@ -30,23 +32,45 @@ public partial class GameMain : Node {
 		FruitMerger.Initialize(_fruitBasket, _fruitPackedList);
 
 		_dropTimer.InitializeTimer(_secondsBetweenFruitSpawn);
+		_dropDelayTimer.InitializeTimer(_fruitSpawnDelay);
 		_gameControls.Initialize(_fruitDropper, _dropTimer);
 		_currentFruit = FruitPicker.TryPickWeightedFruit();
 		_nextFruit = FruitPicker.TryPickWeightedFruit();
 		SetNextFruit();
 	}
 
+	public override void _ExitTree() {
+		base._ExitTree();
+		_gameControls.OnActionDropFruit -= GameControls_OnActionDropFruit;
+		Fruit.OnSameFruitTierCollision -= Fruit_OnSameFruitTierCollision;
+		FruitSpawner.OnFruitSpawned -= FruitSpawner_OnFruitSpawned;
+	}
 
 	public override void _Process(double delta) {
 		base._Process(delta);
 		if (!HasAllComponents()) return;
 		_dropTimer.DecrementCurrentTimer((float)delta);
+		_dropDelayTimer.DecrementCurrentTimer((float)delta);
 		_fruitDropper.UpdateProgressBar((float)delta, _dropTimer.TimerNormalizedIncreasing());
 		_gameControls.CalculateControls();
+		
+		if (_dropDelayTimer.HasTimerEnded && !_fruitDropper.HasFruit()) TrySpawnFruit();
+	}
+
+	private void TrySpawnFruit() {
+		if (!HasAllComponents()) return;
+		_fruitDropper.TryReleaseFruit();
+		SetNextFruit();
+		var fruitInst = FruitSpawner.RB2DInstantiateOrNull(_fruitDropper, _currentFruit, _fruitDropper.DropGlobalPosition);
+		if (fruitInst is null) return;
+		_fruitDropper.SetFruitInstance(fruitInst);
 	}
 
 	private void GameControls_OnActionDropFruit(object? sender, EventArgs e) {
-		FruitSpawner.RB2DInstantiateOrNull(_fruitDropper, _currentFruit, _fruitDropper.DropGlobalPosition);
+		if (!HasAllComponents()) return;
+		_dropTimer.ResetTimer();
+		_dropDelayTimer.ResetTimer();
+		_fruitDropper.TryReleaseFruit();
 	}
 	
 	private void Fruit_OnSameFruitTierCollision(object? sender, FruitPair e) {
@@ -61,6 +85,7 @@ public partial class GameMain : Node {
 	}
 
 	private void SetNextFruit() {
+		if (!HasAllComponents()) return;
 		_currentFruit = _currentFruit is null ? FruitPicker.TryPickWeightedFruit() : _nextFruit;
 		_nextFruit = FruitPicker.TryPickWeightedFruit();
 	}

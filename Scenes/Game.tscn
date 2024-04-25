@@ -191,7 +191,7 @@ tab_size = 0
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="FruitOutOfBounds" type="Area2D" parent="."]
-position = Vector2(673, -340)
+position = Vector2(0, -340)
 input_pickable = false
 script = ExtResource("10_2emqy")
 

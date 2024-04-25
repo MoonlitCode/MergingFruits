@@ -11,7 +11,8 @@ public partial class FruitDropper : Area2D {
 	[Export] private TextureProgressBar? _progressBar;
 	[Export] private CollisionShape2D? _collisionShape2D;
 	[Export] private float _dropperSpeed = 15;
-	
+
+	private RigidBody2D _fruitInstance;
 	private ClassTimer _progressBarFadeTimer = new();
 
 	public Vector2 DropGlobalPosition => _dropPosition?.GlobalPosition ?? Vector2.Zero;
@@ -19,6 +20,11 @@ public partial class FruitDropper : Area2D {
 	public override void _Ready() {
 		base._Ready();
 		_progressBarFadeTimer.InitializeTimer(0.2f);
+	}
+
+	public override void _Process(double delta) {
+		base._Process(delta);
+		ProcessFruitPosition();
 	}
 
 	/// <summary>
@@ -83,6 +89,25 @@ public partial class FruitDropper : Area2D {
 		_progressBar.TintUnder = newUnderColor;
 	}
 
+	private void ProcessFruitPosition() {
+		if (_fruitInstance is null) return;
+		_fruitInstance.GlobalPosition = DropGlobalPosition;
+	}
+	
+	public void SetFruitInstance(RigidBody2D fruitInstance) {
+		if (_fruitInstance is not null) TryReleaseFruit();
+		_fruitInstance = fruitInstance;
+		_fruitInstance.ProcessMode = ProcessModeEnum.Disabled;
+	}
+
+	public void TryReleaseFruit() {
+		if (_fruitInstance is null) return;
+		_fruitInstance.ProcessMode = ProcessModeEnum.Always;
+		_fruitInstance = null;
+	}
+
+	public bool HasFruit() => _fruitInstance is not null;
+	
 	private bool HasAllComponents() {
 		if (_dropperSprite is null) {
 			GD.PrintErr($"FruitDropper.cs is Missing: _dropperSprite");

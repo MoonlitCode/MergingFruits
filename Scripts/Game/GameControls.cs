@@ -42,9 +42,9 @@ public partial class GameControls : Node {
     }
 
     private void FruitDropper_TrySpawnFruit() {
+        //todo Check if both Mouse+Button can spawn at the same time. POSSIBLE issue. Not Confirmed.
         if (!_timer.HasTimerEnded) return;
         if (!Input.IsActionJustPressed(DropFruit)) return;
         OnActionDropFruit?.Invoke(this, EventArgs.Empty);
-        _timer.ResetTimer();
     }
 }
