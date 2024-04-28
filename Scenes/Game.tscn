@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Game/GameMain.cs" id="1_sf7bp"]
 [ext_resource type="Resource" uid="uid://uq0ypusn5nik" path="res://Resources/FruitInfoList.tres" id="2_vex5x"]
-[ext_resource type="PackedScene" uid="uid://djdi670kkv4kg" path="res://Nodes/Fruit_10_Watermlon.tscn" id="3_1nvy6"]
+[ext_resource type="PackedScene" uid="uid://djdi670kkv4kg" path="res://Nodes/Fruits/Fruit_10_Watermelon.tscn" id="3_1nvy6"]
 [ext_resource type="Script" path="res://Scripts/UIUX/GameUI.cs" id="3_2sjk2"]
 [ext_resource type="Texture2D" uid="uid://bbvwu7u0rr7sr" path="res://Sprites/Reference2.bmp" id="3_ngf3e"]
 [ext_resource type="Script" path="res://Scripts/Game/GameControls.cs" id="4_i85eo"]

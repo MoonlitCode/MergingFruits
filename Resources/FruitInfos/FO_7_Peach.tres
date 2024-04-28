@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FruitInfo" load_steps=4 format=3 uid="uid://07rbydrhh8gf"]
+
+[ext_resource type="Texture2D" uid="uid://ch8e08wuysys8" path="res://Sprites/Fruit_Peach.png" id="1_f72bc"]
+[ext_resource type="Script" path="res://Scripts/Fruits/FruitInfo.cs" id="1_xj72n"]
+[ext_resource type="PackedScene" uid="uid://bkrvyhubqyl1f" path="res://Nodes/Fruits/Fruit_7_Peach.tscn" id="2_0tuvp"]
+
+[resource]
+script = ExtResource("1_xj72n")
+_fruitTexture = ExtResource("1_f72bc")
+_packedScene = ExtResource("2_0tuvp")
+_weight = 0.0

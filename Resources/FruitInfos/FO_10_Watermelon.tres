@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FruitInfo" load_steps=4 format=3 uid="uid://uo8plcnnkss8"]
+
+[ext_resource type="Texture2D" uid="uid://00o73rf65u12" path="res://Sprites/Fruit_Watermelon.png" id="1_wm2dm"]
+[ext_resource type="Script" path="res://Scripts/Fruits/FruitInfo.cs" id="1_wqpa5"]
+[ext_resource type="PackedScene" uid="uid://djdi670kkv4kg" path="res://Nodes/Fruits/Fruit_10_Watermelon.tscn" id="2_u567f"]
+
+[resource]
+script = ExtResource("1_wqpa5")
+_fruitTexture = ExtResource("1_wm2dm")
+_packedScene = ExtResource("2_u567f")
+_weight = 0.0

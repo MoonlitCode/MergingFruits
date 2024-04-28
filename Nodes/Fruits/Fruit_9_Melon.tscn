@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6gql23mkeq7h"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://b7lcsnbxer3hl" path="res://Physics/Material/Fruit.tres" id="1_gbjjv"]
+[ext_resource type="Script" path="res://Scripts/Fruits/Fruit.cs" id="2_ef3b1"]
+[ext_resource type="Texture2D" uid="uid://cf2hr8xj00x87" path="res://Sprites/Fruit_Melon.png" id="3_nct3v"]
+
+[node name="Fruit_9_Melon" type="RigidBody2D"]
+process_mode = 3
+mass = 6.0
+physics_material_override = ExtResource("1_gbjjv")
+max_contacts_reported = 6
+contact_monitor = true
+
+[node name="Fruit" type="Node2D" parent="."]
+script = ExtResource("2_ef3b1")
+_fruitTier = 9
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.61, 0.61)
+texture = ExtResource("3_nct3v")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-25, 156, 30, 156, 79, 139, 117, 108, 142, 62, 152, 20, 152, -38, 137, -82, 112, -112, 79, -137, 41, -153, 0, -156, -42, -152, -78, -135, -110, -105, -135, -70, -149, -31, -155, 2, -149, 47, -130, 88, -101, 124, -66, 147)

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FruitInfo" load_steps=4 format=3 uid="uid://b218xmh2vd3vi"]
+
+[ext_resource type="Texture2D" uid="uid://csvc14vaparqm" path="res://Sprites/Fruit_Dekopon.png" id="1_5bmp8"]
+[ext_resource type="Script" path="res://Scripts/Fruits/FruitInfo.cs" id="1_cpelo"]
+[ext_resource type="PackedScene" uid="uid://cjfivah55hjr7" path="res://Nodes/Fruits/Fruit_3_Dekopon.tscn" id="2_rxq66"]
+
+[resource]
+script = ExtResource("1_cpelo")
+_fruitTexture = ExtResource("1_5bmp8")
+_packedScene = ExtResource("2_rxq66")
+_weight = 0.02

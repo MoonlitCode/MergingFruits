@@ -1,11 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://oo8wf2c26aar"]
+[gd_scene load_steps=4 format=3 uid="uid://oo8wf2c26aar"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://b7lcsnbxer3hl" path="res://Physics/Material/Fruit.tres" id="1_1idhv"]
 [ext_resource type="Script" path="res://Scripts/Fruits/Fruit.cs" id="1_iwyox"]
-[ext_resource type="Texture2D" uid="uid://b2c37f7cu57t5" path="res://Sprites/Ball_1k.png" id="2_vhp4m"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_t1dd1"]
-radius = 62.0
+[ext_resource type="Texture2D" uid="uid://bm6lk8pmx4nim" path="res://Sprites/Fruit_Orange.png" id="3_ro5vn"]
 
 [node name="Fruit_4_Orange" type="RigidBody2D"]
 process_mode = 3
@@ -19,10 +16,9 @@ script = ExtResource("1_iwyox")
 _fruitTier = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.94902, 0.513726, 0.101961, 1)
-scale = Vector2(0.12, 0.12)
-texture = ExtResource("2_vhp4m")
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("3_ro5vn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 visible = false
-shape = SubResource("CircleShape2D_t1dd1")
+polygon = PackedVector2Array(0, 59, 23, 55, 43, 43, 58, 22, 62, 0, 57, -24, 44, -44, 23, -56, 0, -58, -23, -54, -41, -43, -56, -25, -61, 0, -56, 24, -41, 44, -23, 55)

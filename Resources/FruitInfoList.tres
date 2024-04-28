@@ -1,8 +1,18 @@
-[gd_resource type="Resource" script_class="FruitInfoList" load_steps=3 format=3 uid="uid://uq0ypusn5nik"]
+[gd_resource type="Resource" script_class="FruitInfoList" load_steps=13 format=3 uid="uid://uq0ypusn5nik"]
 
 [ext_resource type="Resource" uid="uid://bclyp5vyh3u0e" path="res://Resources/FruitInfos/FO_0_Cherry.tres" id="1_axer1"]
 [ext_resource type="Script" path="res://Scripts/Fruits/FruitInfoList.cs" id="1_qqikn"]
+[ext_resource type="Resource" uid="uid://bqnd38n1mpbfg" path="res://Resources/FruitInfos/FO_1_Strawberry.tres" id="2_llgm3"]
+[ext_resource type="Resource" uid="uid://2neieasxv01f" path="res://Resources/FruitInfos/FO_2_Grape.tres" id="3_6p8yn"]
+[ext_resource type="Resource" uid="uid://b218xmh2vd3vi" path="res://Resources/FruitInfos/FO_3_Dekopon.tres" id="4_g1ttd"]
+[ext_resource type="Resource" uid="uid://bvv5p73jpel7g" path="res://Resources/FruitInfos/FO_4_Orange.tres" id="5_hbt0b"]
+[ext_resource type="Resource" uid="uid://dwf7b0dfrch60" path="res://Resources/FruitInfos/FO_5_Apple.tres" id="6_vohsi"]
+[ext_resource type="Resource" uid="uid://dkwp4qw032aho" path="res://Resources/FruitInfos/FO_6_Pear.tres" id="7_5tsm2"]
+[ext_resource type="Resource" uid="uid://07rbydrhh8gf" path="res://Resources/FruitInfos/FO_7_Peach.tres" id="8_w3upr"]
+[ext_resource type="Resource" uid="uid://duwy70h4o06gf" path="res://Resources/FruitInfos/FO_8_Pineapple.tres" id="9_ybx54"]
+[ext_resource type="Resource" uid="uid://bqtwi3btxy4gp" path="res://Resources/FruitInfos/FO_9_Melon.tres" id="10_1hqbu"]
+[ext_resource type="Resource" uid="uid://uo8plcnnkss8" path="res://Resources/FruitInfos/FO_10_Watermelon.tres" id="11_cwtk0"]
 
 [resource]
 script = ExtResource("1_qqikn")
-_data = Array[Object]([ExtResource("1_axer1")])
+_data = Array[Object]([ExtResource("1_axer1"), ExtResource("2_llgm3"), ExtResource("3_6p8yn"), ExtResource("4_g1ttd"), ExtResource("5_hbt0b"), ExtResource("6_vohsi"), ExtResource("7_5tsm2"), ExtResource("8_w3upr"), ExtResource("9_ybx54"), ExtResource("10_1hqbu"), ExtResource("11_cwtk0")])
