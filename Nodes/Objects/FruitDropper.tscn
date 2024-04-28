@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cxhvcco8wsilr" path="res://Sprites/CircleBorder.png" id="4_lq24n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dou7i"]
-size = Vector2(450, 3840)
+size = Vector2(550, 3840)
 
 [node name="FruitDropper" type="Area2D" node_paths=PackedStringArray("_dropperSprite", "_dropPosition", "_progressBar", "_collisionShape2D")]
 script = ExtResource("1_rvjus")
@@ -53,6 +53,5 @@ tint_under = Color(0.43134, 0.43134, 0.43134, 1)
 tint_progress = Color(0.32, 0.8, 0.328, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_dou7i")
 debug_color = Color(0, 0.701961, 0.243137, 0.419608)

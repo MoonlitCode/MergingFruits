@@ -9,9 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://cp8iwty0s3q6r" path="res://Sprites/Bubble.png" id="5_rd4h7"]
 [ext_resource type="Theme" uid="uid://dqh76p7sjqd07" path="res://Themes/Theme_GameUI.theme" id="6_h7smc"]
 [ext_resource type="FontFile" uid="uid://g64isy4kuurc" path="res://Fonts/Roboto-Bold.ttf" id="7_1j7de"]
-[ext_resource type="Texture2D" uid="uid://b2c37f7cu57t5" path="res://Sprites/Ball_1k.png" id="8_atv6o"]
+[ext_resource type="PackedScene" uid="uid://clydt58njpfhn" path="res://Nodes/UI/FruitUpcomingUI.tscn" id="9_587ll"]
 [ext_resource type="Script" path="res://Scripts/Fruits/FruitOutOfBounds.cs" id="10_2emqy"]
-[ext_resource type="PackedScene" uid="uid://c4bjbf84nbipb" path="res://Scenes/Objects/FruitDropper.tscn" id="12_d3o1i"]
+[ext_resource type="PackedScene" uid="uid://c4bjbf84nbipb" path="res://Nodes/Objects/FruitDropper.tscn" id="12_d3o1i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xft2l"]
 size = Vector2(670, 146)
@@ -19,10 +19,11 @@ size = Vector2(670, 146)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qylhi"]
 size = Vector2(1858.22, 15)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("_gameControls", "_fruitDropper", "_fruitBasket")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("_gameControls", "_fruitUpcomingUI", "_fruitDropper", "_fruitBasket")]
 process_mode = 3
 script = ExtResource("1_sf7bp")
 _gameControls = NodePath("GameComponents/GameControls")
+_fruitUpcomingUI = NodePath("GameUI/FruitUpcomingUI")
 _fruitDropper = NodePath("FruitDropper")
 _fruitPackedList = ExtResource("2_vex5x")
 _fruitBasket = NodePath("FruitBasket")
@@ -92,58 +93,8 @@ text = "[center]Score"
 fit_content = true
 tab_size = 0
 
-[node name="FruitUpcomingUI" type="Control" parent="GameUI"]
+[node name="FruitUpcomingUI" parent="GameUI" instance=ExtResource("9_587ll")]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -496.0
-offset_top = 64.0
-offset_right = -150.0
-offset_bottom = 429.0
-grow_horizontal = 0
-
-[node name="Bubble" type="TextureRect" parent="GameUI/FruitUpcomingUI"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -349.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("5_rd4h7")
-expand_mode = 3
-
-[node name="FruitUpcomingImage" type="TextureRect" parent="GameUI/FruitUpcomingUI/Bubble"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -100.0
-offset_right = 100.0
-offset_bottom = 100.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("8_atv6o")
-expand_mode = 3
-
-[node name="UIText" type="RichTextLabel" parent="GameUI/FruitUpcomingUI"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 76.0
-grow_horizontal = 2
-mouse_filter = 2
-theme = ExtResource("6_h7smc")
-theme_override_fonts/bold_font = ExtResource("7_1j7de")
-bbcode_enabled = true
-text = "[center]Upcoming"
-fit_content = true
-tab_size = 0
 
 [node name="FruitMergesUI" type="Control" parent="GameUI"]
 layout_mode = 1

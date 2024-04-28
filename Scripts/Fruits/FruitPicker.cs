@@ -16,7 +16,7 @@ public static class FruitPicker {
     /// <br/>This method will get the highest "list index" if the given "index" is too high.
     /// </summary>
     /// <param name="index">The desired fruit index to spawn</param>
-    public static PackedScene? TryPickSpecificFruit(int index) {
+    public static PackedScene? TryGetFruitScene(int index) {
         if (!HasAllComponents()) return null;
         if (index > _fruitPackedWeightedList.Data.Count) index -= 1;
         if (index < 0) index = 0;
@@ -29,18 +29,17 @@ public static class FruitPicker {
     /// <br/>This method will get the lowest "list index" if the given "index" is too low.
     /// <br/>This method will get the highest "list index" if the given "index" is too high.
     /// </summary>
-    public static PackedScene? TryPickWeightedFruit() {
-        if (!HasAllComponents()) return null;
+    public static int GetWeightedIndex() {
+        if (!HasAllComponents()) return 0;
 		
         var fruitIndex = _fruitPackedWeightedList.Data.Count - 1;
         for (var i = fruitIndex; i >= 0; i--) {
             var fruitWeight = _fruitPackedWeightedList.Data[i].Weight;
             var randomRoll = GD.Randf();
-            if (fruitWeight >= randomRoll) return TryPickSpecificFruit(i);
-            //note Safety Check In-case Everything Is Rolled Past.
-            if (i <= 0) return TryPickSpecificFruit(0);
+            if (fruitWeight >= randomRoll) return i;
         }
-        return null;
+        
+        return 0;
     }
     
     private static bool HasAllComponents() {

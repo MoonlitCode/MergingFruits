@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://clydt58njpfhn"]
+
+[ext_resource type="Script" path="res://Scripts/UIUX/FruitUpcomingUI.cs" id="1_6h6jh"]
+[ext_resource type="Texture2D" uid="uid://cp8iwty0s3q6r" path="res://Sprites/Bubble.png" id="2_6r6dg"]
+[ext_resource type="Texture2D" uid="uid://b2c37f7cu57t5" path="res://Sprites/Ball_1k.png" id="3_rqyqk"]
+[ext_resource type="Theme" uid="uid://dqh76p7sjqd07" path="res://Themes/Theme_GameUI.theme" id="4_o864r"]
+[ext_resource type="FontFile" uid="uid://g64isy4kuurc" path="res://Fonts/Roboto-Bold.ttf" id="5_ikhay"]
+
+[node name="FruitUpcomingUI" type="Control" node_paths=PackedStringArray("_fruitUpcomingImage")]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -496.0
+offset_top = 64.0
+offset_right = -150.0
+offset_bottom = 429.0
+grow_horizontal = 0
+script = ExtResource("1_6h6jh")
+_fruitUpcomingImage = NodePath("Bubble/FruitUpcoming")
+
+[node name="Bubble" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -349.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_6r6dg")
+expand_mode = 3
+
+[node name="FruitUpcoming" type="TextureRect" parent="Bubble"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_rqyqk")
+expand_mode = 3
+
+[node name="UIText" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 76.0
+grow_horizontal = 2
+mouse_filter = 2
+theme = ExtResource("4_o864r")
+theme_override_fonts/bold_font = ExtResource("5_ikhay")
+bbcode_enabled = true
+text = "[center]Upcoming"
+fit_content = true
+tab_size = 0

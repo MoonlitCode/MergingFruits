@@ -1,10 +1,9 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 namespace MergingFruits.Scripts.Fruits;
 
 public static class FruitSpawner {
-    public static event EventHandler OnFruitSpawned;
+    // public static event EventHandler OnFruitSpawned;
     
     /// <summary>
     /// Static method to spawn a "Fruit" from a 'PackedScene' as a 'RigidBody2D'. Returns 'null' if failed instantiation.
@@ -25,8 +24,6 @@ public static class FruitSpawner {
         fruitInstance.GlobalPosition = globalPosition;
         fruitInstance.GlobalRotationDegrees += (float)GD.RandRange(-rotationOffset, rotationOffset);
         fruitInstance.ProcessMode = Node.ProcessModeEnum.Always;
-        
-        OnFruitSpawned?.Invoke(null, EventArgs.Empty);
         return fruitInstance;
     }
 }

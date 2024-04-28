@@ -3,20 +3,21 @@ using System;
 using Godot;
 using MergingFruits.Scripts.Fruits;
 using MergingFruits.Scripts.MoonDev;
+using MergingFruits.Scripts.UIUX;
 
 namespace MergingFruits.Scripts.Game;
 
 public partial class GameMain : Node {
 	[Export] private GameControls? _gameControls;
-	
+	[Export] private FruitUpcomingUI? _fruitUpcomingUI;
 	[Export] private FruitDropper? _fruitDropper;
 	[Export] private FruitInfoList? _fruitPackedList;
 	[Export] private Node2D? _fruitBasket;
 	[Export] private float _secondsBetweenFruitSpawn = 1f;
 	[Export] private float _fruitSpawnDelay = 0.5f;
 
-	private PackedScene _currentFruit;
-	private PackedScene _nextFruit;
+	private int _currentFruitIndex;
+	private int _nextFruitIndex;
 
 	private ClassTimer _dropTimer = new();
 	private ClassTimer _dropDelayTimer = new();
@@ -27,23 +28,22 @@ public partial class GameMain : Node {
 
 		_gameControls.OnActionDropFruit += GameControls_OnActionDropFruit;
 		Fruit.OnSameFruitTierCollision += Fruit_OnSameFruitTierCollision;
-		FruitSpawner.OnFruitSpawned += FruitSpawner_OnFruitSpawned;
 		FruitPicker.Initialize(_fruitPackedList);
 		FruitMerger.Initialize(_fruitBasket, _fruitPackedList);
 
 		_dropTimer.InitializeTimer(_secondsBetweenFruitSpawn);
 		_dropDelayTimer.InitializeTimer(_fruitSpawnDelay);
+		_currentFruitIndex = FruitPicker.GetWeightedIndex();
+		_nextFruitIndex = FruitPicker.GetWeightedIndex();
 		_gameControls.Initialize(_fruitDropper, _dropTimer);
-		_currentFruit = FruitPicker.TryPickWeightedFruit();
-		_nextFruit = FruitPicker.TryPickWeightedFruit();
-		SetNextFruit();
+		_fruitUpcomingUI.Initialize(_fruitPackedList);
+		SetNextFruit(true);
 	}
 
 	public override void _ExitTree() {
 		base._ExitTree();
 		_gameControls.OnActionDropFruit -= GameControls_OnActionDropFruit;
 		Fruit.OnSameFruitTierCollision -= Fruit_OnSameFruitTierCollision;
-		FruitSpawner.OnFruitSpawned -= FruitSpawner_OnFruitSpawned;
 	}
 
 	public override void _Process(double delta) {
@@ -61,9 +61,10 @@ public partial class GameMain : Node {
 		if (!HasAllComponents()) return;
 		_fruitDropper.TryReleaseFruit();
 		SetNextFruit();
-		var fruitInst = FruitSpawner.RB2DInstantiateOrNull(_fruitDropper, _currentFruit, _fruitDropper.DropGlobalPosition);
+		var fruitInst = FruitSpawner.RB2DInstantiateOrNull(_fruitDropper, FruitPicker.TryGetFruitScene(_currentFruitIndex), _fruitDropper.DropGlobalPosition);
 		if (fruitInst is null) return;
 		_fruitDropper.SetFruitInstance(fruitInst);
+		SetNextFruit();
 	}
 
 	private void GameControls_OnActionDropFruit(object? sender, EventArgs e) {
@@ -80,19 +81,20 @@ public partial class GameMain : Node {
 		FruitMerger.ProcessMerge(e);
 	}
 
-	private void FruitSpawner_OnFruitSpawned(object? sender, EventArgs e) {
-		SetNextFruit();
-	}
-
-	private void SetNextFruit() {
+	private void SetNextFruit(bool isFirstRoll = false) {
 		if (!HasAllComponents()) return;
-		_currentFruit = _currentFruit is null ? FruitPicker.TryPickWeightedFruit() : _nextFruit;
-		_nextFruit = FruitPicker.TryPickWeightedFruit();
+		_currentFruitIndex = isFirstRoll ? FruitPicker.GetWeightedIndex() : _nextFruitIndex;
+		_nextFruitIndex = FruitPicker.GetWeightedIndex();
+		_fruitUpcomingUI.UpdateUpcomingImage(_nextFruitIndex);
 	}
 
 	private bool HasAllComponents() {
 		if (_gameControls is null) {
 			GD.PrintErr($"Game.cs is Missing: _gameControls");
+			return false;
+		}
+		if (_fruitUpcomingUI is null) {
+			GD.PrintErr($"Game.cs is Missing: _fruitUpcomingUI");
 			return false;
 		}
 		if (_fruitDropper is null) {
