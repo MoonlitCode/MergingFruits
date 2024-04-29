@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dgdyrtsjplyrx"]
+[gd_scene load_steps=14 format=3 uid="uid://dgdyrtsjplyrx"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameMain.cs" id="1_sf7bp"]
 [ext_resource type="Resource" uid="uid://uq0ypusn5nik" path="res://Resources/FruitInfoList.tres" id="2_vex5x"]
-[ext_resource type="PackedScene" uid="uid://djdi670kkv4kg" path="res://Nodes/Fruits/Fruit_10_Watermelon.tscn" id="3_1nvy6"]
 [ext_resource type="Script" path="res://Scripts/UIUX/GameUI.cs" id="3_2sjk2"]
 [ext_resource type="Texture2D" uid="uid://bbvwu7u0rr7sr" path="res://Sprites/Reference2.bmp" id="3_ngf3e"]
 [ext_resource type="Script" path="res://Scripts/Game/GameControls.cs" id="4_i85eo"]
@@ -37,11 +36,17 @@ script = ExtResource("4_i85eo")
 
 [node name="GameUI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -960.0
 offset_top = -540.0
 offset_right = 960.0
 offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("3_2sjk2")
 
 [node name="ColorRect" type="ColorRect" parent="GameUI"]
@@ -157,9 +162,6 @@ _targetParent = NodePath("../FruitBasket")
 
 [node name="FruitBasket" type="Node2D" parent="."]
 process_mode = 4
-
-[node name="Fruit_10_Watermlon" parent="FruitBasket" instance=ExtResource("3_1nvy6")]
-position = Vector2(-108, 243)
 
 [node name="Walls" type="Node" parent="."]
 
