@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dgdyrtsjplyrx"]
+[gd_scene load_steps=15 format=3 uid="uid://dgdyrtsjplyrx"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameMain.cs" id="1_sf7bp"]
 [ext_resource type="Resource" uid="uid://uq0ypusn5nik" path="res://Resources/FruitInfoList.tres" id="2_vex5x"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bbvwu7u0rr7sr" path="res://Sprites/Reference2.bmp" id="3_ngf3e"]
 [ext_resource type="Script" path="res://Scripts/Game/GameControls.cs" id="4_i85eo"]
 [ext_resource type="Texture2D" uid="uid://cp8iwty0s3q6r" path="res://Sprites/Bubble.png" id="5_rd4h7"]
+[ext_resource type="PackedScene" uid="uid://btksfotqin0ni" path="res://Nodes/UI/ScoreUI.tscn" id="6_emgjh"]
 [ext_resource type="Theme" uid="uid://dqh76p7sjqd07" path="res://Themes/Theme_GameUI.theme" id="6_h7smc"]
 [ext_resource type="FontFile" uid="uid://g64isy4kuurc" path="res://Fonts/Roboto-Bold.ttf" id="7_1j7de"]
 [ext_resource type="PackedScene" uid="uid://clydt58njpfhn" path="res://Nodes/UI/FruitUpcomingUI.tscn" id="9_587ll"]
@@ -18,11 +19,12 @@ size = Vector2(670, 146)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qylhi"]
 size = Vector2(1858.22, 15)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("_gameControls", "_fruitUpcomingUI", "_fruitDropper", "_fruitBasket")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("_gameControls", "_fruitUpcomingUI", "_scoreUI", "_fruitDropper", "_fruitBasket")]
 process_mode = 3
 script = ExtResource("1_sf7bp")
 _gameControls = NodePath("GameComponents/GameControls")
 _fruitUpcomingUI = NodePath("GameUI/FruitUpcomingUI")
+_scoreUI = NodePath("GameUI/ScoreUI")
 _fruitDropper = NodePath("FruitDropper")
 _fruitPackedList = ExtResource("2_vex5x")
 _fruitBasket = NodePath("FruitBasket")
@@ -64,39 +66,7 @@ position = Vector2(960, 540)
 scale = Vector2(1.51737, 1.51737)
 texture = ExtResource("3_ngf3e")
 
-[node name="ScoreUI" type="Control" parent="GameUI"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = 150.0
-offset_top = 64.0
-offset_right = 496.0
-offset_bottom = 429.0
-
-[node name="Bubble" type="TextureRect" parent="GameUI/ScoreUI"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -349.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("5_rd4h7")
-expand_mode = 3
-
-[node name="UIText" type="RichTextLabel" parent="GameUI/ScoreUI"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 76.0
-grow_horizontal = 2
-mouse_filter = 2
-theme = ExtResource("6_h7smc")
-theme_override_fonts/bold_font = ExtResource("7_1j7de")
-bbcode_enabled = true
-text = "[center]Score"
-fit_content = true
-tab_size = 0
+[node name="ScoreUI" parent="GameUI" instance=ExtResource("6_emgjh")]
 
 [node name="FruitUpcomingUI" parent="GameUI" instance=ExtResource("9_587ll")]
 layout_mode = 1

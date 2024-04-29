@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://btksfotqin0ni"]
+
+[ext_resource type="Script" path="res://Scripts/UIUX/ScoreUI.cs" id="1_lc2u1"]
+[ext_resource type="Texture2D" uid="uid://cp8iwty0s3q6r" path="res://Sprites/Bubble.png" id="2_r3msv"]
+[ext_resource type="Theme" uid="uid://dqh76p7sjqd07" path="res://Themes/Theme_GameUI.theme" id="3_atkjd"]
+[ext_resource type="FontFile" uid="uid://g64isy4kuurc" path="res://Fonts/Roboto-Bold.ttf" id="4_1r7qw"]
+
+[node name="ScoreUI" type="Control" node_paths=PackedStringArray("_scoreTextLabel")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 150.0
+offset_top = 64.0
+offset_right = 496.0
+offset_bottom = 429.0
+script = ExtResource("1_lc2u1")
+_scoreTextLabel = NodePath("Bubble/ScoreText")
+
+[node name="Bubble" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -349.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_r3msv")
+expand_mode = 3
+
+[node name="ScoreText" type="RichTextLabel" parent="Bubble"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -35.5
+offset_bottom = 35.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_atkjd")
+theme_override_fonts/bold_font = ExtResource("4_1r7qw")
+bbcode_enabled = true
+text = "[center]9999999999"
+fit_content = true
+
+[node name="UIText" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 76.0
+grow_horizontal = 2
+mouse_filter = 2
+theme = ExtResource("3_atkjd")
+theme_override_fonts/bold_font = ExtResource("4_1r7qw")
+bbcode_enabled = true
+text = "[center]Score"
+fit_content = true
+tab_size = 0

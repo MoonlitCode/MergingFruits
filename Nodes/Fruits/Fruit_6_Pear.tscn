@@ -14,6 +14,7 @@ contact_monitor = true
 [node name="Fruit" type="Node2D" parent="."]
 script = ExtResource("2_houfc")
 _fruitTier = 6
+_scoreValue = 14
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.358, 0.358)

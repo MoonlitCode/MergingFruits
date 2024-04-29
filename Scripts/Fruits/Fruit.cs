@@ -10,9 +10,11 @@ public partial class Fruit : Node2D {
 	public const string ClassName = "Fruit";
 
 	[Export] private int _fruitTier;
+	[Export] private int _scoreValue;
 	private RigidBody2D? _parentRigidBody2D;
 
 	public int FruitTier => _fruitTier;
+	public int ScoreValue => _scoreValue;
 	public bool IsAttemptingMerge;
 
 	public override void _Ready() {
