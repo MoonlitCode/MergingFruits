@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dgdyrtsjplyrx"]
+[gd_scene load_steps=14 format=3 uid="uid://dgdyrtsjplyrx"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameMain.cs" id="1_sf7bp"]
 [ext_resource type="Resource" uid="uid://uq0ypusn5nik" path="res://Resources/FruitInfoList.tres" id="2_vex5x"]
 [ext_resource type="Script" path="res://Scripts/UIUX/GameUI.cs" id="3_2sjk2"]
-[ext_resource type="Texture2D" uid="uid://bbvwu7u0rr7sr" path="res://Sprites/Reference2.bmp" id="3_ngf3e"]
 [ext_resource type="Script" path="res://Scripts/Game/GameControls.cs" id="4_i85eo"]
 [ext_resource type="PackedScene" uid="uid://btksfotqin0ni" path="res://Nodes/UI/ScoreUI.tscn" id="6_emgjh"]
 [ext_resource type="PackedScene" uid="uid://d1k3na0b33s8i" path="res://Nodes/UI/FruitMergesUI.tscn" id="8_mh711"]
@@ -31,6 +30,13 @@ _fruitDropper = NodePath("FruitDropper")
 _fruitPackedList = ExtResource("2_vex5x")
 _fruitBasket = NodePath("FruitBasket")
 
+[node name="GameComponents" type="Node" parent="."]
+process_mode = 4
+
+[node name="GameControls" type="Node" parent="GameComponents"]
+process_mode = 3
+script = ExtResource("4_i85eo")
+
 [node name="Background" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 8
@@ -45,7 +51,7 @@ offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Background"]
+[node name="Main" type="ColorRect" parent="Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,18 +60,59 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.780392, 0.556863, 0.329412, 1)
 
-[node name="Reference2" type="Sprite2D" parent="Background"]
-visible = false
-position = Vector2(960, 540)
-scale = Vector2(1.51737, 1.51737)
-texture = ExtResource("3_ngf3e")
+[node name="Color_5" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 471.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.937255, 0.909804, 0.698039, 1)
 
-[node name="GameComponents" type="Node" parent="."]
-process_mode = 4
+[node name="Color_4" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 471.0
+offset_bottom = -475.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.807843, 0.65098, 0.341176, 1)
 
-[node name="GameControls" type="Node" parent="GameComponents"]
-process_mode = 3
-script = ExtResource("4_i85eo")
+[node name="Color_3" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 523.0
+offset_bottom = -544.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.87451, 0.717647, 0.541176, 1)
+
+[node name="Color_2" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 471.0
+offset_bottom = -575.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.690196, 0.537255, 0.247059, 1)
+
+[node name="Color_1" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 392.0
+offset_bottom = -586.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.694118, 0.458824, 0.145098, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -76,10 +123,7 @@ position = Vector2(0, -350)
 position = Vector2(0, -410)
 _targetParent = NodePath("../FruitBasket")
 
-[node name="FruitBasket" type="Node2D" parent="."]
-process_mode = 4
-
-[node name="Walls" type="Node" parent="."]
+[node name="Walls" type="Node2D" parent="."]
 
 [node name="FruitKillBounds" parent="Walls" instance=ExtResource("16_25fq1")]
 position = Vector2(0, -590)
@@ -114,6 +158,64 @@ rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
 shape = SubResource("RectangleShape2D_qylhi")
+
+[node name="FruitBasket" type="Node2D" parent="."]
+process_mode = 4
+
+[node name="Foreground" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Color_1" type="ColorRect" parent="Foreground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 625.0
+offset_top = 990.0
+offset_right = -625.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.901961, 0.698039, 0.254902, 1)
+
+[node name="Color_2" type="ColorRect" parent="Foreground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 625.0
+offset_top = 990.0
+offset_right = -568.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.57079
+color = Color(0.901961, 0.698039, 0.254902, 1)
+
+[node name="Color_3" type="ColorRect" parent="Foreground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1280.0
+offset_top = 990.0
+offset_right = 87.0002
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.57079
+color = Color(0.901961, 0.698039, 0.254902, 1)
 
 [node name="GameUI" type="Control" parent="."]
 layout_mode = 3

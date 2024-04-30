@@ -13,6 +13,7 @@ _dropperSprite = NodePath("Sprite2D_Dropper")
 _dropPosition = NodePath("Sprite2D_Dropper/Node2D_DropPosition")
 _progressBar = NodePath("Sprite2D_Dropper/Control_DropTimer/TextureProgressBar")
 _collisionShape2D = NodePath("CollisionShape2D")
+_dropperSpeed = 10.0
 
 [node name="Sprite2D_Dropper" type="Sprite2D" parent="."]
 texture = ExtResource("2_ofac8")

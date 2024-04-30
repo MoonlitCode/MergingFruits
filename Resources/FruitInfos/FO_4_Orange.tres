@@ -8,4 +8,4 @@
 script = ExtResource("1_oxgw6")
 _fruitTexture = ExtResource("1_bblqh")
 _packedScene = ExtResource("2_geem8")
-_weight = 0.0
+_weight = 0.05
