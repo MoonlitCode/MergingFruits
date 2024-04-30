@@ -9,13 +9,17 @@ namespace MergingFruits.Scripts.Game;
 
 public partial class GameMain : Node {
 	[Export] private GameControls? _gameControls;
+	[ExportGroup("UI")]
 	[Export] private FruitUpcomingUI? _fruitUpcomingUI;
 	[Export] private ScoreUI? _scoreUI;
+	[Export] private GameOverUI? _gameOverUI;
+	[ExportGroup("Components")]
 	[Export] private FruitOutOfBounds? _fruitOutOfBounds;
 	[Export] private FruitDropper? _fruitDropper;
 	[Export] private FruitInfoList? _fruitPackedList;
 	[Export] private Node2D? _fruitBasket;
-	[Export] private float _outOfBoundsTimerMax = 4;
+	[ExportGroup("Variables")]
+	[Export(PropertyHint.Range, "0, 10, 0.1")] private float _outOfBoundsTimerMax = 2;
 	[Export] private float _secondsBetweenFruitSpawn = 1f;
 	[Export] private float _fruitSpawnDelay = 0.5f;
 
@@ -30,19 +34,24 @@ public partial class GameMain : Node {
 		base._Ready();
 		if (!HasAllComponents()) return;
 
-		_gameControls!.OnActionDropFruit += GameControls_OnActionDropFruit;
 		Fruit.OnSameFruitTierCollision += Fruit_OnSameFruitTierCollision;
 		FruitOutOfBounds.OnFruitTimedOut += FruitOutOfBounds_OnFruitTimedOut;
 		FruitPicker.Initialize(_fruitPackedList!);
 		FruitMerger.Initialize(_fruitBasket, _fruitPackedList);
 
+		// UI
+		_gameControls!.OnActionDropFruit += GameControls_OnActionDropFruit;
+		_fruitUpcomingUI!.Initialize(_fruitPackedList);
+		_gameOverUI!.SetUIActiveState(false);
+		// Components
+		_gameControls.Initialize(_fruitDropper, _dropTimer);
 		_fruitOutOfBounds!.Initialize(_outOfBoundsTimerMax);
+		// Variables
 		_dropTimer.InitializeTimer(_secondsBetweenFruitSpawn);
 		_dropDelayTimer.InitializeTimer(_fruitSpawnDelay);
 		_currentFruitIndex = FruitPicker.GetWeightedIndex();
 		_nextFruitIndex = FruitPicker.GetWeightedIndex();
-		_gameControls.Initialize(_fruitDropper, _dropTimer);
-		_fruitUpcomingUI!.Initialize(_fruitPackedList);
+		
 		SetNextFruit(true);
 	}
 
@@ -55,10 +64,8 @@ public partial class GameMain : Node {
 
 	public override void _Process(double delta) {
 		base._Process(delta);
-		if (_isGameOver) {
-			//todo GameOverLogic
-			return;
-		}
+		if (_isGameOver) return;
+		
 		if (!HasAllComponents()) return;
 		_dropTimer.DecrementCurrentTimer((float)delta);
 		_dropDelayTimer.DecrementCurrentTimer((float)delta);
@@ -71,7 +78,7 @@ public partial class GameMain : Node {
 	private void TrySpawnFruit() {
 		if (!HasAllComponents()) return;
 		_fruitDropper!.TryReleaseFruit();
-		// SetNextFruit();
+		SetNextFruit();
 		var fruitInst = FruitSpawner.RB2DInstantiateOrNull(_fruitDropper, FruitPicker.TryGetFruitScene(_currentFruitIndex), _fruitDropper.DropGlobalPosition);
 		if (fruitInst is null) return;
 		_fruitDropper.SetFruitInstance(fruitInst);
@@ -96,10 +103,10 @@ public partial class GameMain : Node {
 	}
 
 	private void FruitOutOfBounds_OnFruitTimedOut(object? sender, EventArgs e) {
-		GD.Print($"FruitOutOfBounds Has Timed Out");
 		_isGameOver = true;
 		_fruitDropper!.QueueFree();
 		_fruitDropper = null;
+		_gameOverUI!.SetUIActiveState(true);
 	}
 
 	private void SetNextFruit(bool isFirstRoll = false) {
@@ -113,6 +120,10 @@ public partial class GameMain : Node {
 		if (_isGameOver) return true;
 		if (_gameControls is null) {
 			GD.PrintErr($"Game.cs is Missing: _gameControls");
+			return false;
+		}
+		if (_gameOverUI is null) {
+			GD.PrintErr($"Game.cs is Missing: _gameOverUI");
 			return false;
 		}
 		if (_fruitUpcomingUI is null) {

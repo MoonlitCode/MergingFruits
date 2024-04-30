@@ -1,6 +1,9 @@
 ﻿namespace MergingFruits.Scripts;
 
 public static class StringInputs {
+    //note User Interface
+    public static string UIConfirm { get; private set; } = "ui_confirm";
+    
     //note Movement
     public static string DirUp { get; private set; } = "dir_up";
     public static string DirDown { get; private set; } = "dir_down";

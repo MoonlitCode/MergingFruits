@@ -3,8 +3,6 @@
 namespace MergingFruits.Scripts.Fruits;
 
 public static class FruitSpawner {
-    // public static event EventHandler OnFruitSpawned;
-    
     /// <summary>
     /// Static method to spawn a "Fruit" from a 'PackedScene' as a 'RigidBody2D'. Returns 'null' if failed instantiation.
     /// </summary>

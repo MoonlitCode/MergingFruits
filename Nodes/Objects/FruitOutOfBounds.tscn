@@ -7,6 +7,7 @@ size = Vector2(670, 146)
 
 [node name="FruitOutOfBounds" type="Area2D"]
 input_pickable = false
+monitorable = false
 script = ExtResource("1_db67v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

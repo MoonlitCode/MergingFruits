@@ -38,6 +38,7 @@ public class ClassTimer {
     /// <param name="maxTimer"></param>
     public void InitializeTimer(float maxTimer) {
         _maxTimer = maxTimer;
+        ResetTimer();
     }
 
     /// <summary>
