@@ -4,7 +4,7 @@
 [ext_resource type="PhysicsMaterial" uid="uid://b7lcsnbxer3hl" path="res://Physics/Material/Fruit.tres" id="1_jldfm"]
 [ext_resource type="Texture2D" uid="uid://00o73rf65u12" path="res://Sprites/Fruit_Watermelon.png" id="3_pxqlx"]
 
-[node name="Fruit_10_Watermlon" type="RigidBody2D"]
+[node name="Fruit_10_Watermelon" type="RigidBody2D"]
 process_mode = 3
 mass = 8.0
 physics_material_override = ExtResource("1_jldfm")

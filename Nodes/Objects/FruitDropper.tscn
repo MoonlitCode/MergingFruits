@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cxhvcco8wsilr" path="res://Sprites/CircleBorder.png" id="4_lq24n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dou7i"]
-size = Vector2(550, 3840)
+size = Vector2(550, 2160)
 
 [node name="FruitDropper" type="Area2D" node_paths=PackedStringArray("_dropperSprite", "_dropPosition", "_progressBar", "_collisionShape2D")]
 script = ExtResource("1_rvjus")

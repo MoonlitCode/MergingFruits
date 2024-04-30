@@ -24,7 +24,7 @@ public partial class GameMain : Node {
 	private int _currentFruitIndex;
 	private int _nextFruitIndex;
 	private int _currentScore;
-	private bool _ignoreComponentCheck;
+	private bool _isGameOver;
 	
 	public override void _Ready() {
 		base._Ready();
@@ -55,6 +55,10 @@ public partial class GameMain : Node {
 
 	public override void _Process(double delta) {
 		base._Process(delta);
+		if (_isGameOver) {
+			//todo GameOverLogic
+			return;
+		}
 		if (!HasAllComponents()) return;
 		_dropTimer.DecrementCurrentTimer((float)delta);
 		_dropDelayTimer.DecrementCurrentTimer((float)delta);
@@ -93,8 +97,8 @@ public partial class GameMain : Node {
 
 	private void FruitOutOfBounds_OnFruitTimedOut(object? sender, EventArgs e) {
 		GD.Print($"FruitOutOfBounds Has Timed Out");
-		_ignoreComponentCheck = true;
-		_fruitDropper.QueueFree();
+		_isGameOver = true;
+		_fruitDropper!.QueueFree();
 		_fruitDropper = null;
 	}
 
@@ -106,7 +110,7 @@ public partial class GameMain : Node {
 	}
 
 	private bool HasAllComponents() {
-		if (_ignoreComponentCheck) return true;
+		if (_isGameOver) return true;
 		if (_gameControls is null) {
 			GD.PrintErr($"Game.cs is Missing: _gameControls");
 			return false;

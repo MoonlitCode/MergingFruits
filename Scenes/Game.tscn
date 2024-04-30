@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dgdyrtsjplyrx"]
+[gd_scene load_steps=14 format=3 uid="uid://dgdyrtsjplyrx"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameMain.cs" id="1_sf7bp"]
 [ext_resource type="Resource" uid="uid://uq0ypusn5nik" path="res://Resources/FruitInfoList.tres" id="2_vex5x"]
@@ -9,12 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://d1k3na0b33s8i" path="res://Nodes/UI/FruitMergesUI.tscn" id="8_mh711"]
 [ext_resource type="PackedScene" uid="uid://tlikhy4s2u5" path="res://Nodes/Objects/FruitOutOfBounds.tscn" id="9_8ir4w"]
 [ext_resource type="PackedScene" uid="uid://clydt58njpfhn" path="res://Nodes/UI/FruitUpcomingUI.tscn" id="9_587ll"]
-[ext_resource type="PackedScene" uid="uid://djdi670kkv4kg" path="res://Nodes/Fruits/Fruit_10_Watermelon.tscn" id="11_056pn"]
 [ext_resource type="PackedScene" uid="uid://c4bjbf84nbipb" path="res://Nodes/Objects/FruitDropper.tscn" id="12_d3o1i"]
-[ext_resource type="PackedScene" uid="uid://c6gql23mkeq7h" path="res://Nodes/Fruits/Fruit_9_Melon.tscn" id="12_tmw5t"]
-[ext_resource type="PackedScene" uid="uid://c7f527sfxghhl" path="res://Nodes/Fruits/Fruit_8_Pineapple.tscn" id="13_0x2jq"]
-[ext_resource type="PackedScene" uid="uid://bkrvyhubqyl1f" path="res://Nodes/Fruits/Fruit_7_Peach.tscn" id="14_7i5by"]
-[ext_resource type="PackedScene" uid="uid://pnfy4accqib2" path="res://Nodes/Fruits/Fruit_6_Pear.tscn" id="15_a33ec"]
+[ext_resource type="PackedScene" uid="uid://bkv4ww0qrqbv6" path="res://Nodes/Objects/FruitKillBounds.tscn" id="16_25fq1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tphcb"]
+size = Vector2(800, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qylhi"]
 size = Vector2(1920, 100)
@@ -78,6 +77,7 @@ layout_mode = 1
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="FruitOutOfBounds" parent="." instance=ExtResource("9_8ir4w")]
+position = Vector2(0, -350)
 
 [node name="FruitDropper" parent="." node_paths=PackedStringArray("_targetParent") instance=ExtResource("12_d3o1i")]
 position = Vector2(0, -410)
@@ -86,31 +86,27 @@ _targetParent = NodePath("../FruitBasket")
 [node name="FruitBasket" type="Node2D" parent="."]
 process_mode = 4
 
-[node name="Fruit_10_Watermlon" parent="FruitBasket" instance=ExtResource("11_056pn")]
-position = Vector2(-129, 262)
-
-[node name="Fruit_9_Melon" parent="FruitBasket" instance=ExtResource("12_tmw5t")]
-position = Vector2(161, 87)
-
-[node name="Fruit_8_Pineapple" parent="FruitBasket" instance=ExtResource("13_0x2jq")]
-position = Vector2(-195, -35)
-
-[node name="Fruit_7_Peach" parent="FruitBasket" instance=ExtResource("14_7i5by")]
-position = Vector2(20, -136)
-
-[node name="Fruit_6_Pear" parent="FruitBasket" instance=ExtResource("15_a33ec")]
-position = Vector2(220, -161)
-
-[node name="Fruit_10_Watermlon2" parent="FruitBasket" instance=ExtResource("11_056pn")]
-position = Vector2(-10, -811)
-
 [node name="Walls" type="Node" parent="."]
 
+[node name="FruitKillBounds" parent="Walls" instance=ExtResource("16_25fq1")]
+position = Vector2(0, -590)
+
+[node name="FruitKillBounds2" parent="Walls" instance=ExtResource("16_25fq1")]
+position = Vector2(0, 590)
+
+[node name="FruitKillBounds3" parent="Walls" instance=ExtResource("16_25fq1")]
+position = Vector2(-1010, 0)
+rotation = -1.57079
+
+[node name="FruitKillBounds4" parent="Walls" instance=ExtResource("16_25fq1")]
+position = Vector2(1010, 0)
+rotation = -1.57079
+
 [node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
-position = Vector2(-6, 497)
+position = Vector2(0, 500)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
-shape = SubResource("RectangleShape2D_qylhi")
+shape = SubResource("RectangleShape2D_tphcb")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
 position = Vector2(370, 0)
@@ -120,7 +116,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_qylhi")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
-position = Vector2(-370, -4)
+position = Vector2(-370, 0)
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
