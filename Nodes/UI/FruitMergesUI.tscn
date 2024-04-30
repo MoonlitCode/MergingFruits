@@ -1,0 +1,171 @@
+[gd_scene load_steps=15 format=3 uid="uid://d1k3na0b33s8i"]
+
+[ext_resource type="Texture2D" uid="uid://cp8iwty0s3q6r" path="res://Sprites/Bubble.png" id="1_chliy"]
+[ext_resource type="Texture2D" uid="uid://cr2rq7hlm6mmn" path="res://Sprites/Fruit_Cherry.png" id="2_apo2l"]
+[ext_resource type="Theme" uid="uid://dqh76p7sjqd07" path="res://Themes/Theme_GameUI.theme" id="2_r22pm"]
+[ext_resource type="Texture2D" uid="uid://bhyd6h2bngce1" path="res://Sprites/Fruit_Strawberry.png" id="3_1054r"]
+[ext_resource type="FontFile" uid="uid://g64isy4kuurc" path="res://Fonts/Roboto-Bold.ttf" id="3_j3ghm"]
+[ext_resource type="Texture2D" uid="uid://doy5y0eqq08g0" path="res://Sprites/Fruit_Grape.png" id="4_ego5i"]
+[ext_resource type="Texture2D" uid="uid://csvc14vaparqm" path="res://Sprites/Fruit_Dekopon.png" id="5_6gy1p"]
+[ext_resource type="Texture2D" uid="uid://bm6lk8pmx4nim" path="res://Sprites/Fruit_Orange.png" id="6_3ocip"]
+[ext_resource type="Texture2D" uid="uid://b3010bpmbk07v" path="res://Sprites/Fruit_Apple.png" id="7_7ccqc"]
+[ext_resource type="Texture2D" uid="uid://ce7ra06jgp432" path="res://Sprites/Fruit_Pear.png" id="8_apiix"]
+[ext_resource type="Texture2D" uid="uid://ch8e08wuysys8" path="res://Sprites/Fruit_Peach.png" id="9_8126n"]
+[ext_resource type="Texture2D" uid="uid://30gx7nibjl0y" path="res://Sprites/Fruit_Pineapple.png" id="10_6hrcd"]
+[ext_resource type="Texture2D" uid="uid://cf2hr8xj00x87" path="res://Sprites/Fruit_Melon.png" id="11_kx4kd"]
+[ext_resource type="Texture2D" uid="uid://00o73rf65u12" path="res://Sprites/Fruit_Watermelon.png" id="12_5tf5c"]
+
+[node name="FruitMergesUI" type="Control"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -515.0
+offset_top = -546.0
+offset_right = -129.0
+offset_bottom = -141.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Fruits" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -193.0
+offset_top = -386.0
+offset_right = 193.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="0" type="TextureRect" parent="Fruits"]
+layout_mode = 0
+offset_left = 246.0
+offset_top = 43.0
+offset_right = 296.0
+offset_bottom = 93.0
+texture = ExtResource("2_apo2l")
+expand_mode = 3
+
+[node name="1" type="TextureRect" parent="Fruits"]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 98.0
+offset_right = 346.0
+offset_bottom = 148.0
+texture = ExtResource("3_1054r")
+expand_mode = 3
+
+[node name="2" type="TextureRect" parent="Fruits"]
+layout_mode = 0
+offset_left = 317.0
+offset_top = 169.0
+offset_right = 367.0
+offset_bottom = 219.0
+texture = ExtResource("4_ego5i")
+expand_mode = 3
+
+[node name="3" type="TextureRect" parent="Fruits"]
+layout_mode = 0
+offset_left = 299.0
+offset_top = 239.0
+offset_right = 349.0
+offset_bottom = 289.0
+texture = ExtResource("5_6gy1p")
+expand_mode = 3
+
+[node name="4" type="TextureRect" parent="Fruits"]
+layout_mode = 0
+offset_left = 247.0
+offset_top = 297.0
+offset_right = 297.0
+offset_bottom = 347.0
+texture = ExtResource("6_3ocip")
+expand_mode = 3
+
+[node name="5" type="TextureRect" parent="Fruits"]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 315.0
+offset_right = 221.0
+offset_bottom = 365.0
+texture = ExtResource("7_7ccqc")
+expand_mode = 3
+
+[node name="6" type="TextureRect" parent="Fruits"]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 296.0
+offset_right = 141.0
+offset_bottom = 346.0
+texture = ExtResource("8_apiix")
+expand_mode = 3
+
+[node name="7" type="TextureRect" parent="Fruits"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 240.0
+offset_right = 89.0
+offset_bottom = 290.0
+texture = ExtResource("9_8126n")
+expand_mode = 3
+
+[node name="8" type="TextureRect" parent="Fruits"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 170.0
+offset_right = 68.0
+offset_bottom = 220.0
+texture = ExtResource("10_6hrcd")
+expand_mode = 3
+
+[node name="9" type="TextureRect" parent="Fruits"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 97.0
+offset_right = 88.0
+offset_bottom = 147.0
+texture = ExtResource("11_kx4kd")
+expand_mode = 3
+
+[node name="10" type="TextureRect" parent="Fruits"]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 41.0
+offset_right = 141.0
+offset_bottom = 91.0
+texture = ExtResource("12_5tf5c")
+expand_mode = 3
+
+[node name="Bubble" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -193.0
+offset_top = -386.0
+offset_right = 193.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_chliy")
+expand_mode = 3
+
+[node name="UIText" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 76.0
+grow_horizontal = 2
+mouse_filter = 2
+theme = ExtResource("2_r22pm")
+theme_override_fonts/bold_font = ExtResource("3_j3ghm")
+bbcode_enabled = true
+text = "[center]Merge Order"
+fit_content = true
+tab_size = 0

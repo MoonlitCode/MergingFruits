@@ -1,30 +1,31 @@
-[gd_scene load_steps=15 format=3 uid="uid://dgdyrtsjplyrx"]
+[gd_scene load_steps=17 format=3 uid="uid://dgdyrtsjplyrx"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameMain.cs" id="1_sf7bp"]
 [ext_resource type="Resource" uid="uid://uq0ypusn5nik" path="res://Resources/FruitInfoList.tres" id="2_vex5x"]
 [ext_resource type="Script" path="res://Scripts/UIUX/GameUI.cs" id="3_2sjk2"]
 [ext_resource type="Texture2D" uid="uid://bbvwu7u0rr7sr" path="res://Sprites/Reference2.bmp" id="3_ngf3e"]
 [ext_resource type="Script" path="res://Scripts/Game/GameControls.cs" id="4_i85eo"]
-[ext_resource type="Texture2D" uid="uid://cp8iwty0s3q6r" path="res://Sprites/Bubble.png" id="5_rd4h7"]
 [ext_resource type="PackedScene" uid="uid://btksfotqin0ni" path="res://Nodes/UI/ScoreUI.tscn" id="6_emgjh"]
-[ext_resource type="Theme" uid="uid://dqh76p7sjqd07" path="res://Themes/Theme_GameUI.theme" id="6_h7smc"]
-[ext_resource type="FontFile" uid="uid://g64isy4kuurc" path="res://Fonts/Roboto-Bold.ttf" id="7_1j7de"]
+[ext_resource type="PackedScene" uid="uid://d1k3na0b33s8i" path="res://Nodes/UI/FruitMergesUI.tscn" id="8_mh711"]
+[ext_resource type="PackedScene" uid="uid://tlikhy4s2u5" path="res://Nodes/Objects/FruitOutOfBounds.tscn" id="9_8ir4w"]
 [ext_resource type="PackedScene" uid="uid://clydt58njpfhn" path="res://Nodes/UI/FruitUpcomingUI.tscn" id="9_587ll"]
-[ext_resource type="Script" path="res://Scripts/Fruits/FruitOutOfBounds.cs" id="10_2emqy"]
+[ext_resource type="PackedScene" uid="uid://djdi670kkv4kg" path="res://Nodes/Fruits/Fruit_10_Watermelon.tscn" id="11_056pn"]
 [ext_resource type="PackedScene" uid="uid://c4bjbf84nbipb" path="res://Nodes/Objects/FruitDropper.tscn" id="12_d3o1i"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xft2l"]
-size = Vector2(670, 146)
+[ext_resource type="PackedScene" uid="uid://c6gql23mkeq7h" path="res://Nodes/Fruits/Fruit_9_Melon.tscn" id="12_tmw5t"]
+[ext_resource type="PackedScene" uid="uid://c7f527sfxghhl" path="res://Nodes/Fruits/Fruit_8_Pineapple.tscn" id="13_0x2jq"]
+[ext_resource type="PackedScene" uid="uid://bkrvyhubqyl1f" path="res://Nodes/Fruits/Fruit_7_Peach.tscn" id="14_7i5by"]
+[ext_resource type="PackedScene" uid="uid://pnfy4accqib2" path="res://Nodes/Fruits/Fruit_6_Pear.tscn" id="15_a33ec"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qylhi"]
-size = Vector2(1858.22, 15)
+size = Vector2(1920, 100)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("_gameControls", "_fruitUpcomingUI", "_scoreUI", "_fruitDropper", "_fruitBasket")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("_gameControls", "_fruitUpcomingUI", "_scoreUI", "_fruitOutOfBounds", "_fruitDropper", "_fruitBasket")]
 process_mode = 3
 script = ExtResource("1_sf7bp")
 _gameControls = NodePath("GameComponents/GameControls")
 _fruitUpcomingUI = NodePath("GameUI/FruitUpcomingUI")
 _scoreUI = NodePath("GameUI/ScoreUI")
+_fruitOutOfBounds = NodePath("FruitOutOfBounds")
 _fruitDropper = NodePath("FruitDropper")
 _fruitPackedList = ExtResource("2_vex5x")
 _fruitBasket = NodePath("FruitBasket")
@@ -71,60 +72,12 @@ texture = ExtResource("3_ngf3e")
 [node name="FruitUpcomingUI" parent="GameUI" instance=ExtResource("9_587ll")]
 layout_mode = 1
 
-[node name="FruitMergesUI" type="Control" parent="GameUI"]
+[node name="FruitMergesUI" parent="GameUI" instance=ExtResource("8_mh711")]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -515.0
-offset_top = -546.0
-offset_right = -129.0
-offset_bottom = -141.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="Bubble" type="TextureRect" parent="GameUI/FruitMergesUI"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -193.0
-offset_top = -386.0
-offset_right = 193.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("5_rd4h7")
-expand_mode = 3
-
-[node name="UIText" type="RichTextLabel" parent="GameUI/FruitMergesUI"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 76.0
-grow_horizontal = 2
-mouse_filter = 2
-theme = ExtResource("6_h7smc")
-theme_override_fonts/bold_font = ExtResource("7_1j7de")
-bbcode_enabled = true
-text = "[center]Merge Order"
-fit_content = true
-tab_size = 0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="FruitOutOfBounds" type="Area2D" parent="."]
-position = Vector2(0, -340)
-input_pickable = false
-script = ExtResource("10_2emqy")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FruitOutOfBounds"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_xft2l")
-debug_color = Color(0.701961, 0, 0, 0.419608)
+[node name="FruitOutOfBounds" parent="." instance=ExtResource("9_8ir4w")]
 
 [node name="FruitDropper" parent="." node_paths=PackedStringArray("_targetParent") instance=ExtResource("12_d3o1i")]
 position = Vector2(0, -410)
@@ -133,23 +86,41 @@ _targetParent = NodePath("../FruitBasket")
 [node name="FruitBasket" type="Node2D" parent="."]
 process_mode = 4
 
+[node name="Fruit_10_Watermlon" parent="FruitBasket" instance=ExtResource("11_056pn")]
+position = Vector2(-129, 262)
+
+[node name="Fruit_9_Melon" parent="FruitBasket" instance=ExtResource("12_tmw5t")]
+position = Vector2(161, 87)
+
+[node name="Fruit_8_Pineapple" parent="FruitBasket" instance=ExtResource("13_0x2jq")]
+position = Vector2(-195, -35)
+
+[node name="Fruit_7_Peach" parent="FruitBasket" instance=ExtResource("14_7i5by")]
+position = Vector2(20, -136)
+
+[node name="Fruit_6_Pear" parent="FruitBasket" instance=ExtResource("15_a33ec")]
+position = Vector2(220, -161)
+
+[node name="Fruit_10_Watermlon2" parent="FruitBasket" instance=ExtResource("11_056pn")]
+position = Vector2(-10, -811)
+
 [node name="Walls" type="Node" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
-position = Vector2(-6, 455)
+position = Vector2(-6, 497)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 shape = SubResource("RectangleShape2D_qylhi")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
-position = Vector2(328, 0)
+position = Vector2(370, 0)
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
 shape = SubResource("RectangleShape2D_qylhi")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
-position = Vector2(-328, -4)
+position = Vector2(-370, -4)
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]

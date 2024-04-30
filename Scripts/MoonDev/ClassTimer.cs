@@ -79,4 +79,10 @@ public class ClassTimer {
         _hasTimerEnded = true;
         OnTimerEnded?.Invoke(this, this);
     }
+    
+    /// <summary>
+    /// Decrements the "Current timer".
+    /// </summary>
+    /// <param name="amount">Uses "Delta" time typically.</param>
+    public void DecrementCurrentTimer(double amount) => DecrementCurrentTimer((float)amount);
 }
