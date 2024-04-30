@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1kvessgnm3sf"]
+
+[ext_resource type="Texture2D" uid="uid://cvj4wr3pwmtka" path="res://Sprites/Pixel_White.png" id="1_nuuwp"]
+
+[node name="TextureProgressBar_Minimal" type="TextureProgressBar"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.01
+value = 0.85
+nine_patch_stretch = true
+texture_under = ExtResource("1_nuuwp")
+texture_progress = ExtResource("1_nuuwp")
+tint_under = Color(0.145098, 0.145098, 0.145098, 1)

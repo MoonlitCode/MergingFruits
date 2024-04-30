@@ -66,16 +66,11 @@ public partial class FruitDropper : Area2D {
 	/// <param name="progressBarValue">Should be an increasing value between 0 - 1.</param>
 	public void UpdateProgressBar(float delta, float progressBarValue) {
 		if (!HasAllComponents()) return;
-		_progressBar.Value = progressBarValue;
+		_progressBar!.Value = progressBarValue;
 		
-		var progressColor = _progressBar.TintProgress;
-		var underColor = _progressBar.TintUnder;
-		var newProgressColor = new Color(progressColor.R, progressColor.G, progressColor.B);
-		var newUnderColor = new Color(underColor.R, underColor.G, underColor.B);
-
-		if (progressBarValue < 1 ) {
-			_progressBar.TintProgress = newProgressColor;
-			_progressBar.TintUnder = newUnderColor;
+		if (progressBarValue < 1 && !_progressBarFadeTimer.HasTimerEnded) {
+			_progressBar.TintProgress = ColorManipulation.SetAlpha(_progressBar.TintProgress, 1);
+			_progressBar.TintUnder = ColorManipulation.SetAlpha(_progressBar.TintUnder, 1);
 			return;
 		}
 
@@ -83,10 +78,9 @@ public partial class FruitDropper : Area2D {
 		if (_progressBar.TintProgress.A <= 0) return;
 
 		_progressBarFadeTimer.DecrementCurrentTimer(delta);
-		newProgressColor = new Color(progressColor.R, progressColor.G, progressColor.B,_progressBarFadeTimer.TimerNormalizedDecreasing());
-		newUnderColor = new Color(underColor.R, underColor.G, underColor.B,_progressBarFadeTimer.TimerNormalizedDecreasing());
-		_progressBar.TintProgress = newProgressColor;
-		_progressBar.TintUnder = newUnderColor;
+		var timerNormalized = _progressBarFadeTimer.TimerNormalizedDecreasing();
+		_progressBar.TintProgress = ColorManipulation.SetAlpha(_progressBar.TintProgress, timerNormalized);
+		_progressBar.TintUnder = ColorManipulation.SetAlpha(_progressBar.TintUnder, timerNormalized);
 	}
 
 	private void ProcessFruitPosition() {

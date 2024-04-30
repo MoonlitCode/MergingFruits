@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://yavn1ffn3txp"]
+
+[ext_resource type="Script" path="res://Scripts/UIUX/FruitTimeOutUI.cs" id="1_d404c"]
+[ext_resource type="PackedScene" uid="uid://d1kvessgnm3sf" path="res://Nodes/UI/Components/TextureProgressBar_Minimal.tscn" id="2_xyejl"]
+
+[node name="FruitTimeOutUI" type="Control" node_paths=PackedStringArray("_textureProgressBar")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -20.0
+offset_right = 98.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d404c")
+_textureProgressBar = NodePath("TextureProgressBar_Minimal")
+
+[node name="TextureProgressBar_Minimal" parent="." instance=ExtResource("2_xyejl")]
+layout_mode = 1
