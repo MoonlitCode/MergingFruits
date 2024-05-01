@@ -2,7 +2,7 @@
 
 namespace MergingFruits.Scripts.UIUX;
 
-public partial class GameOverUI : Control {
+public partial class OverlayUI : Control {
     [Export] private Button _quitButton;
     [Export] private Button _restartButton;
 
@@ -40,16 +40,14 @@ public partial class GameOverUI : Control {
     }
     
     private bool HasAllComponents() {
-#if TOOLS
         if (_quitButton is null) {
-            GD.PrintErr($"GameOverUI.cs is Missing: _quitButton");
+            GD.PrintErr($"OverlayUI.cs is Missing: _quitButton");
             return false;
         }
         if (_restartButton is null) {
-            GD.PrintErr($"GameOverUI.cs is Missing: _restartButton");
+            GD.PrintErr($"OverlayUI.cs is Missing: _restartButton");
             return false;
         }
-#endif
 
         return true;
     }

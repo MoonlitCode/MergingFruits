@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dgdyrtsjplyrx"]
+[gd_scene load_steps=27 format=3 uid="uid://dgdyrtsjplyrx"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameMain.cs" id="1_sf7bp"]
 [ext_resource type="Resource" uid="uid://uq0ypusn5nik" path="res://Resources/FruitInfoList.tres" id="2_vex5x"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c6gql23mkeq7h" path="res://Nodes/Fruits/Fruit_9_Melon.tscn" id="15_7i3gl"]
 [ext_resource type="PackedScene" uid="uid://bkv4ww0qrqbv6" path="res://Nodes/Objects/FruitKillBounds.tscn" id="16_25fq1"]
 [ext_resource type="PackedScene" uid="uid://c7f527sfxghhl" path="res://Nodes/Fruits/Fruit_8_Pineapple.tscn" id="16_hn1ui"]
+[ext_resource type="PackedScene" uid="uid://b38o6y72x2owf" path="res://Nodes/UI/OverlayUI.tscn" id="17_ic4mr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tphcb"]
 size = Vector2(800, 100)
@@ -59,7 +60,7 @@ scale_max = 4.0
 scale_curve = SubResource("CurveTexture_0wu8n")
 color_ramp = SubResource("GradientTexture1D_u1sno")
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("_gameControls", "_fruitUpcomingUI", "_fruitTimeOutUI", "_scoreUI", "_gameOverUI", "_fruitOutOfBounds", "_fruitDropper", "_fruitBasket")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("_gameControls", "_fruitUpcomingUI", "_fruitTimeOutUI", "_scoreUI", "_gameOverUI", "_overlayUI", "_fruitOutOfBounds", "_fruitDropper", "_fruitBasket")]
 process_mode = 3
 script = ExtResource("1_sf7bp")
 _gameControls = NodePath("GameComponents/GameControls")
@@ -67,6 +68,7 @@ _fruitUpcomingUI = NodePath("GameUI/FruitUpcomingUI")
 _fruitTimeOutUI = NodePath("GameUI/FruitTimeOutUI")
 _scoreUI = NodePath("GameUI/ScoreUI")
 _gameOverUI = NodePath("GameUI/GameOverUI")
+_overlayUI = NodePath("GameUI/OverlayUI")
 _fruitOutOfBounds = NodePath("FruitOutOfBounds")
 _fruitDropper = NodePath("FruitDropper")
 _fruitPackedList = ExtResource("2_vex5x")
@@ -319,4 +321,7 @@ layout_mode = 1
 layout_mode = 1
 
 [node name="GameOverUI" parent="GameUI" instance=ExtResource("9_8i87t")]
+layout_mode = 1
+
+[node name="OverlayUI" parent="GameUI" instance=ExtResource("17_ic4mr")]
 layout_mode = 1

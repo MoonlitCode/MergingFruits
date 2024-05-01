@@ -1,16 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dutudg2mthgs7"]
+[gd_scene load_steps=3 format=3 uid="uid://b38o6y72x2owf"]
 
-[ext_resource type="Theme" uid="uid://dqh76p7sjqd07" path="res://Themes/Theme_GameUI.theme" id="1_5sm00"]
-[ext_resource type="Script" path="res://Scripts/UIUX/GameOverUI.cs" id="1_tahst"]
+[ext_resource type="Script" path="res://Scripts/UIUX/OverlayUI.cs" id="1_4hq5j"]
+[ext_resource type="Theme" uid="uid://dqh76p7sjqd07" path="res://Themes/Theme_GameUI.theme" id="2_q615g"]
 
-[node name="GameOverUI" type="Control" node_paths=PackedStringArray("_quitButton", "_restartButton")]
+[node name="OverlayUI" type="Control" node_paths=PackedStringArray("_quitButton", "_restartButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_tahst")
+script = ExtResource("1_4hq5j")
 _quitButton = NodePath("RichTextLabel/VBoxContainer/QuitButton")
 _restartButton = NodePath("RichTextLabel/VBoxContainer/RestartButton")
 
@@ -32,10 +32,10 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_5sm00")
+theme = ExtResource("2_q615g")
 theme_override_font_sizes/normal_font_size = 128
 bbcode_enabled = true
-text = "[center]Game Over"
+text = "[center]Menu"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0

@@ -14,6 +14,7 @@ public partial class GameMain : Node {
 	[Export] private FruitTimeOutUI? _fruitTimeOutUI;
 	[Export] private ScoreUI? _scoreUI;
 	[Export] private GameOverUI? _gameOverUI;
+	[Export] private OverlayUI? _overlayUI;
 	[ExportGroup("Components")]
 	[Export] private FruitOutOfBounds? _fruitOutOfBounds;
 	[Export] private FruitDropper? _fruitDropper;
@@ -45,6 +46,7 @@ public partial class GameMain : Node {
 		_gameControls!.OnActionDropFruit += GameControls_OnActionDropFruit;
 		_fruitUpcomingUI!.Initialize(_fruitPackedList);
 		_gameOverUI!.SetUIActiveState(false);
+		_overlayUI!.SetUIActiveState(false);
 		// Components
 		_gameControls.Initialize(_fruitDropper, _dropTimer);
 		_fruitOutOfBounds!.Initialize(_outOfBoundsTimer);
@@ -70,6 +72,7 @@ public partial class GameMain : Node {
 		if (_isGameOver) return;
 		
 		if (!HasAllComponents()) return;
+		if (Input.IsActionJustPressed(StringInputs.UIToggleVisibility)) _overlayUI!.SetUIActiveState(!_overlayUI.Visible);
 		_dropTimer.DecrementCurrentTimer((float)delta);
 		_dropDelayTimer.DecrementCurrentTimer((float)delta);
 		_fruitDropper!.UpdateProgressBar((float)delta, _dropTimer.TimerNormalizedIncreasing());
@@ -110,6 +113,7 @@ public partial class GameMain : Node {
 		_isGameOver = true;
 		_fruitDropper!.QueueFree();
 		_fruitDropper = null;
+		_overlayUI!.SetUIActiveState(false);
 		_gameOverUI!.SetUIActiveState(true);
 	}
 
@@ -121,6 +125,7 @@ public partial class GameMain : Node {
 	}
 
 	private bool HasAllComponents() {
+#if TOOLS
 		if (_isGameOver) return true;
 		if (_gameControls is null) {
 			GD.PrintErr($"Game.cs is Missing: _gameControls");
@@ -128,6 +133,10 @@ public partial class GameMain : Node {
 		}
 		if (_gameOverUI is null) {
 			GD.PrintErr($"Game.cs is Missing: _gameOverUI");
+			return false;
+		}
+		if (_overlayUI is null) {
+			GD.PrintErr($"Game.cs is Missing: _overlayUI");
 			return false;
 		}
 		if (_fruitUpcomingUI is null) {
@@ -154,7 +163,7 @@ public partial class GameMain : Node {
 			GD.PrintErr($"Game.cs is Missing: _fruitBasket");
 			return false;
 		}
-
+#endif
 		return true;
 	}
 }
