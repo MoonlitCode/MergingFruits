@@ -1,6 +1,7 @@
 #nullable enable
 using Godot;
 using MergingFruits.Scripts.MoonDev;
+using MergingFruits.Scripts.UIUX;
 
 namespace MergingFruits.Scripts.Fruits;
 
@@ -13,13 +14,13 @@ public partial class FruitDropper : Area2D {
 	[Export] private float _dropperSpeed = 15;
 
 	private RigidBody2D _fruitInstance;
-	private ClassTimer _progressBarFadeTimer = new();
+	private ClassTimer _fadeTimer = new();
 
 	public Vector2 DropGlobalPosition => _dropPosition?.GlobalPosition ?? Vector2.Zero;
 
 	public override void _Ready() {
 		base._Ready();
-		_progressBarFadeTimer.InitializeTimer(0.2f);
+		_fadeTimer.InitializeTimer(UIVariables.FadeTimerMax);
 	}
 
 	public override void _Process(double delta) {
@@ -68,17 +69,17 @@ public partial class FruitDropper : Area2D {
 		if (!HasAllComponents()) return;
 		_progressBar!.Value = progressBarValue;
 		
-		if (progressBarValue < 1 && !_progressBarFadeTimer.HasTimerEnded) {
+		if (progressBarValue < 1 && !_fadeTimer.HasTimerEnded) {
 			_progressBar.TintProgress = ColorManipulation.SetAlpha(_progressBar.TintProgress, 1);
 			_progressBar.TintUnder = ColorManipulation.SetAlpha(_progressBar.TintUnder, 1);
 			return;
 		}
 
-		if (progressBarValue >= 1 && _progressBarFadeTimer.HasTimerEnded) _progressBarFadeTimer.ResetTimer();
+		if (progressBarValue >= 1 && _fadeTimer.HasTimerEnded) _fadeTimer.ResetTimer();
 		if (_progressBar.TintProgress.A <= 0) return;
 
-		_progressBarFadeTimer.DecrementCurrentTimer(delta);
-		var timerNormalized = _progressBarFadeTimer.TimerNormalizedDecreasing();
+		_fadeTimer.DecrementCurrentTimer(delta);
+		var timerNormalized = _fadeTimer.TimerNormalizedDecreasing();
 		_progressBar.TintProgress = ColorManipulation.SetAlpha(_progressBar.TintProgress, timerNormalized);
 		_progressBar.TintUnder = ColorManipulation.SetAlpha(_progressBar.TintUnder, timerNormalized);
 	}

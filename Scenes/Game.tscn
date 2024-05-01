@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dutudg2mthgs7" path="res://Nodes/UI/GameOverUI.tscn" id="9_8i87t"]
 [ext_resource type="PackedScene" uid="uid://tlikhy4s2u5" path="res://Nodes/Objects/FruitOutOfBounds.tscn" id="9_8ir4w"]
 [ext_resource type="PackedScene" uid="uid://clydt58njpfhn" path="res://Nodes/UI/FruitUpcomingUI.tscn" id="9_587ll"]
-[ext_resource type="Script" path="res://Scripts/UIUX/FruitTimeOutUI.cs" id="12_b8qjk"]
+[ext_resource type="PackedScene" uid="uid://yavn1ffn3txp" path="res://Nodes/UI/FruitTimeOutUI.tscn" id="12_b43ty"]
 [ext_resource type="PackedScene" uid="uid://c4bjbf84nbipb" path="res://Nodes/Objects/FruitDropper.tscn" id="12_d3o1i"]
 [ext_resource type="PackedScene" uid="uid://bkv4ww0qrqbv6" path="res://Nodes/Objects/FruitKillBounds.tscn" id="16_25fq1"]
 
@@ -19,11 +19,12 @@ size = Vector2(800, 100)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qylhi"]
 size = Vector2(1920, 100)
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("_gameControls", "_fruitUpcomingUI", "_scoreUI", "_gameOverUI", "_fruitOutOfBounds", "_fruitDropper", "_fruitBasket")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("_gameControls", "_fruitUpcomingUI", "_fruitTimeOutUI", "_scoreUI", "_gameOverUI", "_fruitOutOfBounds", "_fruitDropper", "_fruitBasket")]
 process_mode = 3
 script = ExtResource("1_sf7bp")
 _gameControls = NodePath("GameComponents/GameControls")
 _fruitUpcomingUI = NodePath("GameUI/FruitUpcomingUI")
+_fruitTimeOutUI = NodePath("GameUI/FruitTimeOutUI")
 _scoreUI = NodePath("GameUI/ScoreUI")
 _gameOverUI = NodePath("GameUI/GameOverUI")
 _fruitOutOfBounds = NodePath("FruitOutOfBounds")
@@ -235,6 +236,14 @@ script = ExtResource("3_2sjk2")
 
 [node name="ScoreUI" parent="GameUI" instance=ExtResource("6_emgjh")]
 
+[node name="FruitTimeOutUI" parent="GameUI" instance=ExtResource("12_b43ty")]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+offset_left = -335.0
+offset_top = -287.0
+offset_right = 335.0
+offset_bottom = -277.0
+
 [node name="FruitUpcomingUI" parent="GameUI" instance=ExtResource("9_587ll")]
 layout_mode = 1
 
@@ -243,9 +252,3 @@ layout_mode = 1
 
 [node name="GameOverUI" parent="GameUI" instance=ExtResource("9_8i87t")]
 layout_mode = 1
-
-[node name="FruitTimeOutUI" type="Control" parent="GameUI"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("12_b8qjk")

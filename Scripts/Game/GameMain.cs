@@ -11,6 +11,7 @@ public partial class GameMain : Node {
 	[Export] private GameControls? _gameControls;
 	[ExportGroup("UI")]
 	[Export] private FruitUpcomingUI? _fruitUpcomingUI;
+	[Export] private FruitTimeOutUI? _fruitTimeOutUI;
 	[Export] private ScoreUI? _scoreUI;
 	[Export] private GameOverUI? _gameOverUI;
 	[ExportGroup("Components")]
@@ -25,6 +26,7 @@ public partial class GameMain : Node {
 
 	private ClassTimer _dropTimer = new();
 	private ClassTimer _dropDelayTimer = new();
+	private ClassTimer _outOfBoundsTimer = new();
 	private int _currentFruitIndex;
 	private int _nextFruitIndex;
 	private int _currentScore;
@@ -45,10 +47,11 @@ public partial class GameMain : Node {
 		_gameOverUI!.SetUIActiveState(false);
 		// Components
 		_gameControls.Initialize(_fruitDropper, _dropTimer);
-		_fruitOutOfBounds!.Initialize(_outOfBoundsTimerMax);
+		_fruitOutOfBounds!.Initialize(_outOfBoundsTimer);
 		// Variables
 		_dropTimer.InitializeTimer(_secondsBetweenFruitSpawn);
 		_dropDelayTimer.InitializeTimer(_fruitSpawnDelay);
+		_outOfBoundsTimer.InitializeTimer(_outOfBoundsTimerMax);
 		_currentFruitIndex = FruitPicker.GetWeightedIndex();
 		_nextFruitIndex = FruitPicker.GetWeightedIndex();
 		
@@ -70,6 +73,7 @@ public partial class GameMain : Node {
 		_dropTimer.DecrementCurrentTimer((float)delta);
 		_dropDelayTimer.DecrementCurrentTimer((float)delta);
 		_fruitDropper!.UpdateProgressBar((float)delta, _dropTimer.TimerNormalizedIncreasing());
+		_fruitTimeOutUI!.UpdateProgressBar((float)delta, _outOfBoundsTimer.TimerNormalizedIncreasing(), _fruitOutOfBounds.HasFruitOutOfBounds);
 		_gameControls!.CalculateControls();
 		
 		if (_dropDelayTimer.HasTimerEnded && !_fruitDropper.HasFruit()) TrySpawnFruit();
