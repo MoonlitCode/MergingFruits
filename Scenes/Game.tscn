@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dgdyrtsjplyrx"]
+[gd_scene load_steps=26 format=3 uid="uid://dgdyrtsjplyrx"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameMain.cs" id="1_sf7bp"]
 [ext_resource type="Resource" uid="uid://uq0ypusn5nik" path="res://Resources/FruitInfoList.tres" id="2_vex5x"]
@@ -12,7 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://clydt58njpfhn" path="res://Nodes/UI/FruitUpcomingUI.tscn" id="9_587ll"]
 [ext_resource type="PackedScene" uid="uid://yavn1ffn3txp" path="res://Nodes/UI/FruitTimeOutUI.tscn" id="12_b43ty"]
 [ext_resource type="PackedScene" uid="uid://c4bjbf84nbipb" path="res://Nodes/Objects/FruitDropper.tscn" id="12_d3o1i"]
+[ext_resource type="PackedScene" uid="uid://djdi670kkv4kg" path="res://Nodes/Fruits/Fruit_10_Watermelon.tscn" id="14_g2pbq"]
+[ext_resource type="PackedScene" uid="uid://c6gql23mkeq7h" path="res://Nodes/Fruits/Fruit_9_Melon.tscn" id="15_7i3gl"]
 [ext_resource type="PackedScene" uid="uid://bkv4ww0qrqbv6" path="res://Nodes/Objects/FruitKillBounds.tscn" id="16_25fq1"]
+[ext_resource type="PackedScene" uid="uid://c7f527sfxghhl" path="res://Nodes/Fruits/Fruit_8_Pineapple.tscn" id="16_hn1ui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tphcb"]
 size = Vector2(800, 100)
@@ -199,6 +202,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_qylhi")
 
 [node name="ParticleBasket" type="Node2D" parent="."]
+visible = false
 
 [node name="Particle_Merge" type="GPUParticles2D" parent="ParticleBasket"]
 emitting = false
@@ -215,6 +219,18 @@ trail_section_subdivisions = 3
 
 [node name="FruitBasket" type="Node2D" parent="."]
 process_mode = 4
+
+[node name="Fruit_10_Watermelon" parent="FruitBasket" instance=ExtResource("14_g2pbq")]
+position = Vector2(-135, 266)
+
+[node name="Fruit_9_Melon" parent="FruitBasket" instance=ExtResource("15_7i3gl")]
+position = Vector2(163, 105)
+
+[node name="Fruit_8_Pineapple" parent="FruitBasket" instance=ExtResource("16_hn1ui")]
+position = Vector2(-193, -33)
+
+[node name="Fruit_10_Watermelon2" parent="FruitBasket" instance=ExtResource("14_g2pbq")]
+position = Vector2(63, -337)
 
 [node name="Foreground" type="Control" parent="."]
 layout_mode = 3
@@ -272,7 +288,6 @@ rotation = -1.57079
 color = Color(0.901961, 0.698039, 0.254902, 1)
 
 [node name="GameUI" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

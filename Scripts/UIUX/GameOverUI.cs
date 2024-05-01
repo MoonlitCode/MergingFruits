@@ -1,5 +1,4 @@
 ﻿using Godot;
-using static MergingFruits.Scripts.StringInputs;
 
 namespace MergingFruits.Scripts.UIUX;
 
@@ -14,11 +13,6 @@ public partial class GameOverUI : Control {
     public override void _ExitTree() {
         base._ExitTree();
         _restartButton.Pressed -= RestartButton_Pressed;
-    }
-
-    public override void _Process(double delta) {
-        base._Process(delta);
-        if (Input.IsActionJustPressed(UIConfirm)) RestartButton_Pressed();
     }
 
     private void RestartButton_Pressed() => GetTree().ReloadCurrentScene();
