@@ -10,6 +10,7 @@ namespace MergingFruits.Scripts.Game;
 public partial class GameMain : Node {
 	[Export] private GameControls? _gameControls;
 	[ExportGroup("UI")]
+	[Export] private GameUI? _gameUI;
 	[Export] private FruitUpcomingUI? _fruitUpcomingUI;
 	[Export] private FruitTimeOutUI? _fruitTimeOutUI;
 	[Export] private ScoreUI? _scoreUI;
@@ -48,7 +49,7 @@ public partial class GameMain : Node {
 		_gameOverUI!.SetUIActiveState(false);
 		_overlayUI!.SetUIActiveState(false);
 		// Components
-		_gameControls.Initialize(_fruitDropper, _dropTimer);
+		_gameControls.Initialize(_gameOverUI, _fruitDropper, _dropTimer);
 		_fruitOutOfBounds!.Initialize(_outOfBoundsTimer);
 		// Variables
 		_dropTimer.InitializeTimer(_secondsBetweenFruitSpawn);
@@ -129,6 +130,10 @@ public partial class GameMain : Node {
 		if (_isGameOver) return true;
 		if (_gameControls is null) {
 			GD.PrintErr($"Game.cs is Missing: _gameControls");
+			return false;
+		}
+		if (_gameUI is null) {
+			GD.PrintErr($"Game.cs is Missing: _gameUI");
 			return false;
 		}
 		if (_gameOverUI is null) {

@@ -9,12 +9,14 @@ namespace MergingFruits.Scripts.Game;
 [GlobalClass]
 public partial class GameControls : Node {
     public event EventHandler OnActionDropFruit;
-    
+
+    private Control _gameUI;
     private FruitDropper _fruitDropper;
     
     private ClassTimer _timer;
 
-    public void Initialize(FruitDropper fruitDropper, ClassTimer timer) {
+    public void Initialize(Control gameUI, FruitDropper fruitDropper, ClassTimer timer) {
+        _gameUI = gameUI;
         _fruitDropper = fruitDropper;
         _timer = timer;
     }
@@ -29,10 +31,10 @@ public partial class GameControls : Node {
     
     private void CalculateMouseControls() {
         var mousePosition = GetWindow().GetMousePosition();
-        var halfWindowSize = (Vector2)(GetWindow().Size / 2);
-        var centerOriginPosition = mousePosition - halfWindowSize ;
+        var viewToWorld = _gameUI.GetCanvasTransform().AffineInverse();
+        var worldPosition = viewToWorld * mousePosition;
 		
-        _fruitDropper.TryRepositionDropper(centerOriginPosition);
+        _fruitDropper.TryRepositionDropper(worldPosition);
         FruitDropper_TrySpawnFruit();
     }
 
@@ -42,7 +44,6 @@ public partial class GameControls : Node {
     }
 
     private void FruitDropper_TrySpawnFruit() {
-        //todo Check if both Mouse+Button can spawn at the same time. POSSIBLE issue. Not Confirmed.
         if (!_timer.HasTimerEnded) return;
         if (!Input.IsActionJustPressed(DropFruit)) return;
         OnActionDropFruit?.Invoke(this, EventArgs.Empty);
