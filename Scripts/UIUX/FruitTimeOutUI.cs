@@ -21,17 +21,16 @@ public partial class FruitTimeOutUI : Control {
 
 		if (hasFruitOutOfBounds) {
 			if (_textureProgressBar.TintProgress.A < 1) _fadeTimer.ResetTimer();
-			_textureProgressBar.TintProgress = ColorManipulation.SetAlpha(_textureProgressBar.TintProgress, 1);
-			_textureProgressBar.TintUnder = ColorManipulation.SetAlpha(_textureProgressBar.TintUnder, 1);
+			_textureProgressBar.TintProgress = _textureProgressBar.TintProgress.WithAlpha(1);
+			_textureProgressBar.TintUnder = _textureProgressBar.TintUnder.WithAlpha(1);
 			return;
 		}
 
 		if (_fadeTimer.CurrentTimer <= 0) return;
 		_fadeTimer.DecrementCurrentTimer(delta);
 		var timerNormalized = _fadeTimer.TimerNormalizedDecreasing();
-		_textureProgressBar.TintProgress =
-			ColorManipulation.SetAlpha(_textureProgressBar.TintProgress, timerNormalized);
-		_textureProgressBar.TintUnder = ColorManipulation.SetAlpha(_textureProgressBar.TintUnder, timerNormalized);
+		_textureProgressBar.TintProgress = _textureProgressBar.TintProgress.WithAlpha(timerNormalized);
+		_textureProgressBar.TintUnder = _textureProgressBar.TintUnder.WithAlpha(timerNormalized);
 	}
 
 	public override void _Ready() {

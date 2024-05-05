@@ -13,7 +13,7 @@ public partial class FruitDropper : Area2D {
 	[Export] private CollisionShape2D? _collisionShape2D;
 	[Export] private float _dropperSpeed = 15;
 
-	private RigidBody2D _fruitInstance;
+	private RigidBody2D? _fruitInstance;
 	private ClassTimer _fadeTimer = new();
 
 	public Vector2 DropGlobalPosition => _dropPosition?.GlobalPosition ?? Vector2.Zero;
@@ -35,9 +35,9 @@ public partial class FruitDropper : Area2D {
 	public void TryRepositionDropper(Vector2 globalPosition) {
 		if (!HasAllComponents()) return;
 		
-		var colliderSize = _collisionShape2D.Shape.GetRect().Size.X / 2;
+		var colliderSize = _collisionShape2D!.Shape.GetRect().Size.X / 2;
 		if (!(Mathf.Abs(globalPosition.X) < colliderSize)) return;
-		_dropperSprite.GlobalPosition = new Vector2(globalPosition.X, _dropperSprite.GlobalPosition.Y);
+		_dropperSprite!.GlobalPosition = new Vector2(globalPosition.X, _dropperSprite.GlobalPosition.Y);
 	}
 
 	/// <summary>
@@ -47,10 +47,10 @@ public partial class FruitDropper : Area2D {
 	public void TryTranslatingDropper(Vector2 direction) {
 		if (!HasAllComponents()) return;
 
-		var colliderSize = _collisionShape2D.Shape.GetRect().Size.X / 2;
+		var colliderSize = _collisionShape2D!.Shape.GetRect().Size.X / 2;
 		var positionOffset = direction * _dropperSpeed;
 		
-		var newPosition = new Vector2(_dropperSprite.GlobalPosition.X + positionOffset.X, _dropperSprite.GlobalPosition.Y);
+		var newPosition = new Vector2(_dropperSprite!.GlobalPosition.X + positionOffset.X, _dropperSprite.GlobalPosition.Y);
 		
 		_dropperSprite.GlobalPosition = newPosition;
 		if (newPosition.X < -colliderSize)
@@ -70,8 +70,8 @@ public partial class FruitDropper : Area2D {
 		_progressBar!.Value = progressBarValue;
 		
 		if (progressBarValue < 1 && !_fadeTimer.HasTimerEnded) {
-			_progressBar.TintProgress = ColorManipulation.SetAlpha(_progressBar.TintProgress, 1);
-			_progressBar.TintUnder = ColorManipulation.SetAlpha(_progressBar.TintUnder, 1);
+			_progressBar.TintProgress = _progressBar.TintProgress.WithAlpha(1);
+			_progressBar.TintUnder = _progressBar.TintUnder.WithAlpha(1);
 			return;
 		}
 
@@ -80,8 +80,8 @@ public partial class FruitDropper : Area2D {
 
 		_fadeTimer.DecrementCurrentTimer(delta);
 		var timerNormalized = _fadeTimer.TimerNormalizedDecreasing();
-		_progressBar.TintProgress = ColorManipulation.SetAlpha(_progressBar.TintProgress, timerNormalized);
-		_progressBar.TintUnder = ColorManipulation.SetAlpha(_progressBar.TintUnder, timerNormalized);
+		_progressBar.TintProgress = _progressBar.TintProgress.WithAlpha(timerNormalized);
+		_progressBar.TintUnder = _progressBar.TintUnder.WithAlpha(timerNormalized);
 	}
 
 	private void ProcessFruitPosition() {
