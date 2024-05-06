@@ -4,6 +4,7 @@ using Godot;
 using MergingFruits.Scripts.Fruits;
 using MergingFruits.Scripts.MoonDev;
 using MergingFruits.Scripts.UIUX;
+using static MergingFruits.Scripts.MoonDev.MoonConstants;
 
 namespace MergingFruits.Scripts.Game;
 
@@ -129,43 +130,43 @@ public partial class GameMain : Node {
 #if TOOLS
 		if (_isGameOver) return true;
 		if (_gameControls is null) {
-			GD.PrintErr($"Game.cs is Missing: _gameControls");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_gameControls)}");
 			return false;
 		}
 		if (_gameUI is null) {
-			GD.PrintErr($"Game.cs is Missing: _gameUI");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_gameUI)}");
 			return false;
 		}
 		if (_gameOverUI is null) {
-			GD.PrintErr($"Game.cs is Missing: _gameOverUI");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_gameOverUI)}");
 			return false;
 		}
 		if (_overlayUI is null) {
-			GD.PrintErr($"Game.cs is Missing: _overlayUI");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_overlayUI)}");
 			return false;
 		}
 		if (_fruitUpcomingUI is null) {
-			GD.PrintErr($"Game.cs is Missing: _fruitUpcomingUI");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_fruitUpcomingUI)}");
 			return false;
 		}
 		if (_scoreUI is null) {
-			GD.PrintErr($"Game.cs is Missing: _scoreUI");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_scoreUI)}");
 			return false;
 		}
 		if (_fruitOutOfBounds is null) {
-			GD.PrintErr($"Game.cs is Missing: _fruitOutOfBounds");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_fruitOutOfBounds)}");
 			return false;
 		}
 		if (_fruitDropper is null) {
-			GD.PrintErr($"Game.cs is Missing: _fruitDropper");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_fruitDropper)}");
 			return false;
 		}
 		if (_fruitPackedList is null) {
-			GD.PrintErr($"Game.cs is Missing: _packedFruitList");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_fruitPackedList)}");
 			return false;
 		}
 		if (_fruitBasket is null) {
-			GD.PrintErr($"Game.cs is Missing: _fruitBasket");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_fruitBasket)}");
 			return false;
 		}
 #endif

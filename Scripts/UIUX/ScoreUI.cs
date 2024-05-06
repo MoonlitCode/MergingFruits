@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using Godot;
+using static MergingFruits.Scripts.MoonDev.MoonConstants;
 
 namespace MergingFruits.Scripts.UIUX;
 
@@ -21,7 +22,7 @@ public partial class ScoreUI : Control {
 
 	private bool HasAllComponents() {
 		if (_scoreTextLabel is not null) return true;
-		GD.PrintErr($"ScoreUI.cs is Missing: _scoreTextLabel");
+		GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_scoreTextLabel)}");
 		return false;
 	}
 }

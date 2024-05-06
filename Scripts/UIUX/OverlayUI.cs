@@ -1,4 +1,5 @@
 ﻿using Godot;
+using static MergingFruits.Scripts.MoonDev.MoonConstants;
 
 namespace MergingFruits.Scripts.UIUX;
 
@@ -41,11 +42,11 @@ public partial class OverlayUI : Control {
 
 	private bool HasAllComponents() {
 		if (_quitButton is null) {
-			GD.PrintErr($"OverlayUI.cs is Missing: _quitButton");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_quitButton)}");
 			return false;
 		}
 		if (_restartButton is null) {
-			GD.PrintErr($"OverlayUI.cs is Missing: _restartButton");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_restartButton)}");
 			return false;
 		}
 		return true;

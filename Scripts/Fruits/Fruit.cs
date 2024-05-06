@@ -1,6 +1,7 @@
 #nullable enable
 using System;
 using Godot;
+using static MergingFruits.Scripts.MoonDev.MoonConstants;
 
 namespace MergingFruits.Scripts.Fruits;
 
@@ -44,7 +45,7 @@ public partial class Fruit : Node2D {
 
 	private bool HasAllComponents() {
 		if (_parentRigidBody2D is null) {
-			GD.PrintErr($"Game.cs is Missing: _parentRigidBody2D");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_parentRigidBody2D)}");
 			return false;
 		}
 

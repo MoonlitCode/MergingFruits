@@ -1,5 +1,6 @@
 using Godot;
 using MergingFruits.Scripts.MoonDev;
+using static MergingFruits.Scripts.MoonDev.MoonConstants;
 
 namespace MergingFruits.Scripts.UIUX;
 
@@ -40,7 +41,7 @@ public partial class FruitTimeOutUI : Control {
 
 	private bool HasAllComponents() {
 		if (_textureProgressBar is null) {
-			GD.PrintErr($"FruitTimeOutUI.cs is Missing: _textureProgressBar");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_textureProgressBar)}");
 			return false;
 		}
 		return true;

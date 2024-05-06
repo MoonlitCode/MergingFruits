@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using Godot;
+using static MergingFruits.Scripts.MoonDev.MoonConstants;
 
 namespace MergingFruits.Scripts.Fruits;
 
@@ -43,8 +44,11 @@ public static class FruitPicker {
 	}
 
 	private static bool HasAllComponents() {
-		if (_fruitPackedWeightedList is not null) return true;
-		GD.PrintErr($"FruitPicker.cs is Missing: _fruitPackedWeightedList");
-		return false;
+		if (_fruitPackedWeightedList is null) {
+			GD.PrintErr($"FruitPicker.cs {IsMissingString} {nameof(_fruitPackedWeightedList)}");
+			return false;
+		}
+
+		return true;
 	}
 }

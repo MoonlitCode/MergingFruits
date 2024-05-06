@@ -2,6 +2,7 @@
 using Godot;
 using MergingFruits.Scripts.MoonDev;
 using MergingFruits.Scripts.UIUX;
+using static MergingFruits.Scripts.MoonDev.MoonConstants;
 
 namespace MergingFruits.Scripts.Fruits;
 
@@ -105,23 +106,23 @@ public partial class FruitDropper : Area2D {
 	
 	private bool HasAllComponents() {
 		if (_dropperSprite is null) {
-			GD.PrintErr($"FruitDropper.cs is Missing: _dropperSprite");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_dropperSprite)}");
 			return false;
 		}
 		if (_targetParent is null) {
-			GD.PrintErr($"FruitDropper.cs is Missing: _targetParent");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_targetParent)}");
 			return false;
 		}
 		if (_dropPosition is null) {
-			GD.PrintErr($"FruitDropper.cs is Missing: _dropPosition");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_dropPosition)}");
 			return false;
 		}
 		if (_progressBar is null) {
-			GD.PrintErr($"FruitDropper.cs is Missing: _progressBar");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_progressBar)}");
 			return false;
 		}
 		if (_collisionShape2D is null) {
-			GD.PrintErr($"FruitDropper.cs is Missing: _collisionShape2D");
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_collisionShape2D)}");
 			return false;
 		}
 
