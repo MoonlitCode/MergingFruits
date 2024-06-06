@@ -16,6 +16,7 @@ public static class FruitMerger {
 		if (CheckIfNewPairExisted(fruitPair)) return;
 		_lastPair = fruitPair;
 		var midPosition = (fruitPair.Fruit1.GlobalPosition + fruitPair.Fruit2.GlobalPosition) / 2;
+		var midRotation = (fruitPair.Fruit1.GlobalRotation + fruitPair.Fruit2.GlobalRotation) / 2;
 		if (_fruitInfoList is null) {
 			GD.Load("FruitMerger.cs: FruitList is Missing");
 			return;
@@ -25,7 +26,7 @@ public static class FruitMerger {
 		fruitPair.Fruit1Root.QueueFree();
 		fruitPair.Fruit2Root.QueueFree();
 		if (nextFruit >= _fruitInfoList.Data.Count) return;
-		FruitSpawner.RB2DInstantiateOrNull(_fruitBasket, _fruitInfoList.Data[nextFruit].PackedScene, midPosition);
+		FruitSpawner.RB2DInstantiateOrNull(_fruitBasket, _fruitInfoList.Data[nextFruit].PackedScene, midPosition, midRotation);
 	}
 
 	private static bool CheckIfNewPairExisted(FruitPair comparePair) {

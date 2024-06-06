@@ -9,11 +9,11 @@ public static class FruitSpawner {
 	/// <param name="parentNode">The 'Node' for the "Fruit" to be parented to.</param>
 	/// <param name="fruitPackedScene">The "Fruit Scene" to spawn.</param>
 	/// <param name="globalPosition">The 'Global Position'.</param>
-	/// <param name="rotationOffset">Offset is applied in 'Degrees'. Default is +/-20.</param>
+	/// <param name="globalRotation">The 'Global Rotation'.</param>
 	/// <param name="freezePhysics">Whether 'Physics' should be applied to the 'RigidBody'.</param>
 	/// <returns></returns>
 	public static RigidBody2D RB2DInstantiateOrNull(Node2D parentNode, PackedScene fruitPackedScene,
-		Vector2 globalPosition, float rotationOffset = 20, bool freezePhysics = false) {
+		Vector2 globalPosition, float globalRotation = 0, bool freezePhysics = false) {
 		if (fruitPackedScene is null) return null;
 		var fruitNode = GD.Load<PackedScene>(fruitPackedScene.ResourcePath);
 		var fruitInstance = fruitNode.InstantiateOrNull<RigidBody2D>();
@@ -21,7 +21,7 @@ public static class FruitSpawner {
 		fruitInstance.ProcessMode = Node.ProcessModeEnum.Disabled;
 		parentNode.AddChild(fruitInstance);
 		fruitInstance.GlobalPosition = globalPosition;
-		fruitInstance.GlobalRotationDegrees += (float)GD.RandRange(-rotationOffset, rotationOffset);
+		fruitInstance.GlobalRotation = globalRotation;
 		fruitInstance.ProcessMode = Node.ProcessModeEnum.Always;
 		return fruitInstance;
 	}
