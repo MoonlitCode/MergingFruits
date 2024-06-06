@@ -11,10 +11,14 @@ config_version=5
 [application]
 
 config/name="MergingFruits"
-config/version="0.0.6"
+config/version="0.0.7"
 run/main_scene="res://Scenes/Game.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+MusicPlayer="*res://Nodes/MusicPlayer.tscn"
 
 [display]
 
@@ -29,6 +33,12 @@ project/assembly_name="MergingFruits"
 [filesystem]
 
 import/fbx/enabled=false
+
+[importer_defaults]
+
+wav={
+"edit/loop_mode": 2
+}
 
 [input]
 

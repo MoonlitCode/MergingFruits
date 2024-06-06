@@ -1,15 +1,20 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 namespace MergingFruits.Scripts.Fruits;
 
 public static class FruitMerger {
+	public static EventHandler<Vector2> FruitMerged;
+	
 	private static FruitInfoList _fruitInfoList;
 	private static Node2D _fruitBasket;
+	private static AudioStream _mergeAudio;
 	private static FruitPair _lastPair = new();
 
-	public static void Initialize(Node2D fruitBasket, FruitInfoList fruitInfoList) {
+	public static void Initialize(Node2D fruitBasket, FruitInfoList fruitInfoList, AudioStream mergeAudio) {
 		_fruitBasket = fruitBasket;
 		_fruitInfoList = fruitInfoList;
+		_mergeAudio = mergeAudio;
 	}
 
 	public static void ProcessMerge(FruitPair fruitPair) {
@@ -25,6 +30,8 @@ public static class FruitMerger {
 		var nextFruit = fruitPair.Fruit1.FruitTier + 1;
 		fruitPair.Fruit1Root.QueueFree();
 		fruitPair.Fruit2Root.QueueFree();
+		FruitMerged.Invoke(null, midPosition);
+		if (SFXPlayer.Instance is not null) SFXPlayer.Instance.PlaySound(_mergeAudio);
 		if (nextFruit >= _fruitInfoList.Data.Count) return;
 		FruitSpawner.RB2DInstantiateOrNull(_fruitBasket, _fruitInfoList.Data[nextFruit].PackedScene, midPosition, midRotation);
 	}

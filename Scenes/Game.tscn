@@ -1,15 +1,18 @@
-[gd_scene load_steps=24 format=3 uid="uid://dgdyrtsjplyrx"]
+[gd_scene load_steps=20 format=3 uid="uid://dgdyrtsjplyrx"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameMain.cs" id="1_sf7bp"]
 [ext_resource type="Resource" uid="uid://uq0ypusn5nik" path="res://Resources/FruitInfoList.tres" id="2_vex5x"]
 [ext_resource type="Script" path="res://Scripts/UIUX/GameUI.cs" id="3_2sjk2"]
+[ext_resource type="AudioStream" uid="uid://c3om0t0xvwfgt" path="res://Audio/SFX/WaterDrop.wav" id="3_lx37m"]
 [ext_resource type="Script" path="res://Scripts/Game/GameControls.cs" id="4_i85eo"]
+[ext_resource type="Script" path="res://Scripts/SFXPlayer.cs" id="4_uasqd"]
 [ext_resource type="PackedScene" uid="uid://btksfotqin0ni" path="res://Nodes/UI/ScoreUI.tscn" id="6_emgjh"]
-[ext_resource type="Texture2D" uid="uid://cvj4wr3pwmtka" path="res://Sprites/Pixel_White.png" id="7_cd1xy"]
 [ext_resource type="PackedScene" uid="uid://d1k3na0b33s8i" path="res://Nodes/UI/FruitMergesUI.tscn" id="8_mh711"]
+[ext_resource type="Script" path="res://Scripts/Fruits/FruitParticleSpawner.cs" id="9_4adxm"]
 [ext_resource type="PackedScene" uid="uid://dutudg2mthgs7" path="res://Nodes/UI/GameOverUI.tscn" id="9_8i87t"]
 [ext_resource type="PackedScene" uid="uid://tlikhy4s2u5" path="res://Nodes/Objects/FruitOutOfBounds.tscn" id="9_8ir4w"]
 [ext_resource type="PackedScene" uid="uid://clydt58njpfhn" path="res://Nodes/UI/FruitUpcomingUI.tscn" id="9_587ll"]
+[ext_resource type="PackedScene" uid="uid://7opjtmw30gtu" path="res://Nodes/Particle_FruitMerge.tscn" id="10_0o43o"]
 [ext_resource type="PackedScene" uid="uid://yavn1ffn3txp" path="res://Nodes/UI/FruitTimeOutUI.tscn" id="12_b43ty"]
 [ext_resource type="PackedScene" uid="uid://c4bjbf84nbipb" path="res://Nodes/Objects/FruitDropper.tscn" id="12_d3o1i"]
 [ext_resource type="PackedScene" uid="uid://bkv4ww0qrqbv6" path="res://Nodes/Objects/FruitKillBounds.tscn" id="16_25fq1"]
@@ -20,42 +23,6 @@ size = Vector2(800, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qylhi"]
 size = Vector2(1920, 100)
-
-[sub_resource type="Gradient" id="Gradient_xcnac"]
-colors = PackedColorArray(0, 1, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_u1sno"]
-gradient = SubResource("Gradient_xcnac")
-
-[sub_resource type="Curve" id="Curve_felpi"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_w3x37"]
-curve = SubResource("Curve_felpi")
-
-[sub_resource type="Curve" id="Curve_0s6uu"]
-_data = [Vector2(0, 0), 0.0, 4.0, 0, 0, Vector2(1, 0), -4.0, 1.4, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_0wu8n"]
-curve = SubResource("Curve_0s6uu")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qcw4g"]
-lifetime_randomness = 1.0
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 128.0
-angle_max = 360.0
-spread = 180.0
-radial_velocity_min = 300.0
-radial_velocity_max = 600.0
-radial_velocity_curve = SubResource("CurveTexture_w3x37")
-gravity = Vector3(0, 0, 0)
-scale_min = 2.0
-scale_max = 4.0
-scale_curve = SubResource("CurveTexture_0wu8n")
-color_ramp = SubResource("GradientTexture1D_u1sno")
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_gameControls", "_gameUI", "_fruitUpcomingUI", "_fruitTimeOutUI", "_scoreUI", "_gameOverUI", "_overlayUI", "_fruitOutOfBounds", "_fruitDropper", "_fruitBasket")]
 process_mode = 3
@@ -71,13 +38,29 @@ _fruitOutOfBounds = NodePath("FruitOutOfBounds")
 _fruitDropper = NodePath("FruitDropper")
 _fruitPackedList = ExtResource("2_vex5x")
 _fruitBasket = NodePath("FruitBasket")
+_mergeAudio = ExtResource("3_lx37m")
 
 [node name="GameComponents" type="Node" parent="."]
-process_mode = 4
+process_mode = 3
 
 [node name="GameControls" type="Node" parent="GameComponents"]
-process_mode = 3
 script = ExtResource("4_i85eo")
+
+[node name="SFXPlayer" type="Node" parent="GameComponents" node_paths=PackedStringArray("_audioStreamPlayers")]
+script = ExtResource("4_uasqd")
+_audioStreamPlayers = [NodePath("Player0"), NodePath("Player2"), NodePath("Player3"), NodePath("Player4")]
+
+[node name="Player0" type="AudioStreamPlayer" parent="GameComponents/SFXPlayer"]
+bus = &"SFX"
+
+[node name="Player2" type="AudioStreamPlayer" parent="GameComponents/SFXPlayer"]
+bus = &"SFX"
+
+[node name="Player3" type="AudioStreamPlayer" parent="GameComponents/SFXPlayer"]
+bus = &"SFX"
+
+[node name="Player4" type="AudioStreamPlayer" parent="GameComponents/SFXPlayer"]
+bus = &"SFX"
 
 [node name="Background" type="Control" parent="."]
 layout_mode = 3
@@ -201,20 +184,12 @@ rotation = 1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
 shape = SubResource("RectangleShape2D_qylhi")
 
-[node name="ParticleBasket" type="Node2D" parent="."]
+[node name="FruitParticleSpawner" type="Node" parent="." node_paths=PackedStringArray("_particleBasket")]
+script = ExtResource("9_4adxm")
+_spawnParticles = ExtResource("10_0o43o")
+_particleBasket = NodePath("Node2D")
 
-[node name="Particle_Merge" type="GPUParticles2D" parent="ParticleBasket"]
-emitting = false
-amount = 200
-sub_emitter = NodePath(".")
-process_material = SubResource("ParticleProcessMaterial_qcw4g")
-texture = ExtResource("7_cd1xy")
-lifetime = 0.3
-one_shot = true
-collision_base_size = 0.0
-trail_enabled = true
-trail_sections = 3
-trail_section_subdivisions = 3
+[node name="Node2D" type="Node2D" parent="FruitParticleSpawner"]
 
 [node name="FruitBasket" type="Node2D" parent="."]
 process_mode = 4

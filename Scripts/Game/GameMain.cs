@@ -22,6 +22,7 @@ public partial class GameMain : Node {
 	[Export] private FruitDropper? _fruitDropper;
 	[Export] private FruitInfoList? _fruitPackedList;
 	[Export] private Node2D? _fruitBasket;
+	[Export] private AudioStream? _mergeAudio;
 	[ExportGroup("Variables")]
 	[Export(PropertyHint.Range, "0, 10, 0.1")] private float _outOfBoundsTimerMax = 2;
 	[Export] private float _secondsBetweenFruitSpawn = 1f;
@@ -42,7 +43,7 @@ public partial class GameMain : Node {
 		Fruit.OnSameFruitTierCollision += Fruit_OnSameFruitTierCollision;
 		FruitOutOfBounds.OnFruitTimedOut += FruitOutOfBounds_OnFruitTimedOut;
 		FruitPicker.Initialize(_fruitPackedList!);
-		FruitMerger.Initialize(_fruitBasket, _fruitPackedList);
+		FruitMerger.Initialize(_fruitBasket, _fruitPackedList, _mergeAudio);
 
 		// UI
 		_gameControls!.OnActionDropFruit += GameControls_OnActionDropFruit;
@@ -167,6 +168,10 @@ public partial class GameMain : Node {
 		}
 		if (_fruitBasket is null) {
 			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_fruitBasket)}");
+			return false;
+		}
+		if (_mergeAudio is null) {
+			GD.PrintErr($"{GetType().Name} {IsMissingString} {nameof(_mergeAudio)}");
 			return false;
 		}
 #endif
